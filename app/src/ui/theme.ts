@@ -7,14 +7,20 @@ const palette = {
 	greenLight: "#56DCBA",
 	greenPrimary: "#0ECD9D",
 	greenDark: "#0A906E",
+	grey: "#373B45",
 	black: "#0B0B0B",
 	white: "#F0F2F3",
 };
 
 const theme = createTheme({
 	colors: {
-		mainBackground: palette.white,
-		cardPrimaryBackground: palette.purplePrimary,
+		mainBackground: palette.grey,
+		cardPrimaryBackground: palette.white,
+		textPrimary: palette.white,
+		textSecondary: palette.grey,
+		accent: palette.greenPrimary,
+		accentDark: palette.greenDark,
+		accentLight: palette.greenLight,
 	},
 	spacing: {
 		s: 8,

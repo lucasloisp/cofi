@@ -4,11 +4,39 @@ import {
 	Quicksand_600SemiBold,
 	Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
-import { NavigationContainer } from "@react-navigation/native";
-import { ThemeProvider } from "@shopify/restyle";
+import {
+	DefaultTheme as DefaultNavigationTheme,
+	NavigationContainer,
+	Theme as NavigationTheme,
+} from "@react-navigation/native";
+import { ThemeProvider, useTheme } from "@shopify/restyle";
+import { useMemo } from "react";
 
 import { Router } from "./src/app/navigation/Router";
-import theme from "./src/ui/theme";
+import theme, { Theme } from "./src/ui/theme";
+
+const AppNavigationContainer = () => {
+	const appTheme = useTheme<Theme>();
+	const navigationTheme: NavigationTheme = useMemo(
+		() => ({
+			...DefaultNavigationTheme,
+			colors: {
+				...DefaultNavigationTheme.colors,
+				background: appTheme.colors.mainBackground,
+				primary: appTheme.colors.accent,
+				border: appTheme.colors.accentDark,
+				card: appTheme.colors.cardPrimaryBackground,
+				text: appTheme.colors.textSecondary,
+			},
+		}),
+		[appTheme],
+	);
+	return (
+		<NavigationContainer theme={navigationTheme}>
+			<Router />
+		</NavigationContainer>
+	);
+};
 
 export default function App() {
 	const [fontsLoaded, fontError] = useFonts({
@@ -23,9 +51,7 @@ export default function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<NavigationContainer>
-				<Router />
-			</NavigationContainer>
+			<AppNavigationContainer />
 		</ThemeProvider>
 	);
 }
