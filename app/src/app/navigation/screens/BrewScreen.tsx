@@ -1,8 +1,14 @@
 import { Linking, Pressable } from "react-native";
+
+import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
 import { Box } from "../../../ui/atoms/Box";
 import { Text } from "../../../ui/atoms/Text";
+import { useAppTheme } from "../../../ui/theme";
 
 export const BrewScreen = () => {
+	const {
+		colors: { textPrimary },
+	} = useAppTheme();
 	return (
 		<Box paddingHorizontal="m">
 			<Text variant="header">
@@ -17,7 +23,10 @@ export const BrewScreen = () => {
 					<Text variant="action">Source: AeroPrecipe.</Text>
 				</Box>
 			</Pressable>
-			<Text variant="body">Method: AeroPress</Text>
+			<Text variant="body">
+				<AeroPressIcon width={20} height={20} fill={textPrimary} />
+				AeroPress
+			</Text>
 			<Text variant="body">Filters: two, rinsed</Text>
 			<Text variant="body">Coffee: 14g</Text>
 			<Text variant="body">Grind: Medium-fine (10 clicks on C3)</Text>

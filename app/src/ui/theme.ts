@@ -1,4 +1,4 @@
-import { createTheme } from "@shopify/restyle";
+import { createTheme, useTheme } from "@shopify/restyle";
 
 const palette = {
 	purpleLight: "#8C6FF7",
@@ -50,3 +50,5 @@ const theme = createTheme({
 
 export type Theme = typeof theme;
 export default theme;
+
+export const useAppTheme = useTheme<Theme>;
