@@ -34,12 +34,16 @@ const theme = createTheme({
 			fontSize: 34,
 		},
 		body: {
-			fontSize: 16,
 			lineHeight: 24,
+		},
+		action: {
+			fontFamily: "Quicksand_600SemiBold",
+			fontSize: 16,
 		},
 		defaults: {
 			fontFamily: "Quicksand_400Regular",
-			// We can define a default text variant here.
+			color: "textPrimary",
+			fontSize: 16,
 		},
 	},
 });
