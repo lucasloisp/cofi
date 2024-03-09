@@ -1,6 +1,7 @@
 import {
 	useFonts,
 	Quicksand_400Regular,
+	Quicksand_500Medium,
 	Quicksand_600SemiBold,
 	Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
@@ -41,6 +42,7 @@ const AppNavigationContainer = () => {
 export default function App() {
 	const [fontsLoaded, fontError] = useFonts({
 		Quicksand_400Regular,
+		Quicksand_500Medium,
 		Quicksand_600SemiBold,
 		Quicksand_700Bold,
 	});
