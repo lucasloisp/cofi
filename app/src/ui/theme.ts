@@ -24,7 +24,7 @@ const theme = createTheme({
 	},
 	textVariants: {
 		header: {
-			fontWeight: "bold",
+			fontFamily: "Quicksand_700Bold",
 			fontSize: 34,
 		},
 		body: {
@@ -32,6 +32,7 @@ const theme = createTheme({
 			lineHeight: 24,
 		},
 		defaults: {
+			fontFamily: "Quicksand_400Regular",
 			// We can define a default text variant here.
 		},
 	},

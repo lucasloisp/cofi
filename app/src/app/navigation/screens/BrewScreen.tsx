@@ -1,5 +1,5 @@
-import { Text } from "react-native";
+import { Text } from "../../../ui/Text";
 
 export const BrewScreen = () => {
-	return <Text>Brew Screen</Text>;
+	return <Text variant="body">Brew Screen</Text>;
 };
