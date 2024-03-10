@@ -38,6 +38,7 @@ export const BrewScreen = () => {
 				>
 					<AeroPressIcon width={48} height={48} fill={textPrimary} />
 					<Text variant="body">AeroPress</Text>
+					{/* Two Filters, rinsed */}
 				</Box>
 				<Box
 					flex={1}
@@ -60,17 +61,16 @@ export const BrewScreen = () => {
 				>
 					<CoffeeScoopIcon width={48} height={48} fill={textPrimary} />
 					<Text variant="body">Med-fine</Text>
+					{/* 10 clicks on C3 */}
 				</Box>
 			</Box>
-			<Text variant="body">Filters: two, rinsed</Text>
-			<Text variant="body">Coffee: 14g</Text>
-			<Text variant="body">Grind: Medium-fine (10 clicks on C3)</Text>
 			<Text variant="body">
-				Bloom the coffee with 40g of water for 30 seconds
+				1. (0:00) Bloom 40g of water{"\n"}
+				2. (0:30) Add 180g water{"\n"}
+				3. (1:30) Swirl{"\n"}
+				4. (1:50) Press for 20 seconds{"\n"}
+				4. (2:10) Enjoy!
 			</Text>
-			<Text variant="body">Add 180g water and place the plunger</Text>
-			<Text variant="body">At 1:30 swirl</Text>
-			<Text variant="body">At 1:50 press for 20 seconds</Text>
 		</Box>
 	);
 };
