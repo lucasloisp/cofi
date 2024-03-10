@@ -5,6 +5,7 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { AppStackParamList } from "./types";
 
 const AppStack = createNativeStackNavigator<AppStackParamList>();
+
 export const Router = () => {
 	return (
 		<AppStack.Navigator>
