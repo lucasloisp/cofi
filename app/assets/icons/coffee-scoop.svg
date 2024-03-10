@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 128 128" x="0px" y="0px">
+    <defs>
+        <style>
+            .cls-1,
+            .cls-2,
+            .cls-3,
+            .cls-4 {
+                stroke-width: 4px;
+            }
+
+            .cls-1,
+            .cls-3,
+            .cls-4 {
+                stroke-linecap: round;
+            }
+
+            .cls-1,
+            .cls-4 {
+                stroke-linejoin: round;
+            }
+
+            .cls-2,
+            .cls-3,
+            .cls-4 {
+                fill: none;
+            }
+
+            .cls-2,
+            .cls-3 {
+                stroke-miterlimit: 10;
+            }
+        </style>
+    </defs>
+    <title>Artboard 21</title>
+    <path class="cls-1" d="M55,57s-11-4-14-8-7-8-11-8-8,4-11,8S5,57,5,57" />
+    <line class="cls-2" stroke="#000" x1="57" y1="62" x2="128" y2="62" />
+    <path class="cls-3" stroke="#000" d="M2.08,57C2,57.66,2,58.33,2,59a28,28,0,0,0,56,0c0-.67,0-1.34-.08-2Z" />
+    <line class="cls-4" stroke="#000" x1="21" y1="67" x2="39" y2="67" />
+</svg>
