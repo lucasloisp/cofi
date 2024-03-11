@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { Linking, Pressable } from "react-native";
 import type { SvgProps } from "react-native-svg";
 
@@ -35,14 +35,25 @@ const RecipeCharacteristic = ({ Icon, label }: RecipeCharacteristicProps) => {
 	);
 };
 
+type CoffeeMethod = "AeroPress" | "Pour Over" | "French Press" | "Espresso";
+type CoffeeGrind = "Coarse" | "Med-coarse" | "Medium" | "Med-fine" | "Fine";
 type RecipeStep = {
 	time: number;
 	description: string;
-	done: boolean;
+};
+
+type Recipe = {
+	name: string;
+	author: string;
+	source: string;
+	method: CoffeeMethod;
+	coffeeWeight: number;
+	coffeeGrind: CoffeeGrind;
+	steps: RecipeStep[];
 };
 
 type RecipeStepProps = {
-	step: RecipeStep;
+	step: RecipeStep & { done: boolean };
 };
 
 const RecipeStepTask = ({
@@ -74,33 +85,29 @@ const RecipeStepTask = ({
 };
 
 export const BrewScreen = () => {
-	const recipe = {
+	const recipe: Recipe = {
 		name: "Smooothy",
 		author: "Adib",
 		source: "https://aeroprecipe.com/recipes/smooothy",
 		method: "AeroPress",
 		coffeeWeight: 14,
 		coffeeGrind: "Med-fine",
+		steps: [
+			{ time: 0, description: "Bloom 40g of water" },
+			{ time: 30, description: "Add 180g water" },
+			{ time: 90, description: "Swirl" },
+			{ time: 110, description: "Press for 20 seconds" },
+			{ time: 130, description: "Enjoy!" },
+		],
 	};
-	const [steps, setSteps] = useState<RecipeStep[]>([
-		{ time: 0, description: "Bloom 40g of water", done: false },
-		{ time: 30, description: "Add 180g water", done: false },
-		{ time: 90, description: "Swirl", done: false },
-		{ time: 110, description: "Press for 20 seconds", done: false },
-		{ time: 130, description: "Enjoy!", done: false },
-	]);
-	const toggleStep = (ix: number) => {
-		setSteps((prev) => {
-			const { done: stepWasDone } = prev[ix];
-			return prev.map((step, index) => {
-				if (stepWasDone ? index >= ix : index <= ix) {
-					return { ...step, done: !stepWasDone };
-				} else {
-					return step;
-				}
-			});
-		});
-	};
+	const [stepDone, toggleStep] = useReducer(
+		(prev: number, ix: number) => (ix <= prev ? ix - 1 : ix),
+		-1,
+	);
+	const steps = recipe.steps.map((step, ix) => ({
+		...step,
+		done: ix <= stepDone,
+	}));
 	return (
 		<Box paddingHorizontal="m" rowGap="m">
 			<Text variant="header">
