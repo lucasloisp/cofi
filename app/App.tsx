@@ -14,6 +14,7 @@ import { ThemeProvider, useTheme } from "@shopify/restyle";
 import { useMemo } from "react";
 
 import { Router } from "./src/app/navigation/Router";
+import { QueryProvider } from "./src/services/queries";
 import theme, { Theme } from "./src/ui/theme";
 
 const AppNavigationContainer = () => {
@@ -52,8 +53,10 @@ export default function App() {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
-			<AppNavigationContainer />
-		</ThemeProvider>
+		<QueryProvider>
+			<ThemeProvider theme={theme}>
+				<AppNavigationContainer />
+			</ThemeProvider>
+		</QueryProvider>
 	);
 }
