@@ -36,8 +36,8 @@ export const BrewScreen = () => {
 	return (
 		<Box paddingHorizontal="m" rowGap="m">
 			<Text variant="header">
-				{recipe.name}{" "}
-				<Text fontFamily="Quicksand_400Regular">by {recipe.author}</Text>
+				{recipe.name}
+				<Text fontFamily="Quicksand_400Regular"> by {recipe.author}</Text>
 			</Text>
 			<Pressable onPress={() => Linking.openURL(recipe.source)}>
 				<Box backgroundColor="accentLight" padding="m" borderRadius={4}>
