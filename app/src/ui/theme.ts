@@ -33,9 +33,11 @@ const theme = createTheme({
 			fontFamily: "Quicksand_700Bold",
 			fontSize: 34,
 		},
-		body: {
-			lineHeight: 24,
+		subheader: {
+			fontFamily: "Quicksand_500Medium",
+			fontSize: 30,
 		},
+		body: {},
 		action: {
 			fontFamily: "Quicksand_600SemiBold",
 			fontSize: 16,

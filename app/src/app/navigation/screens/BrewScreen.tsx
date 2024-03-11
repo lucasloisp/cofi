@@ -1,4 +1,5 @@
 import { Linking, Pressable } from "react-native";
+import type { SvgProps } from "react-native-svg";
 
 import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../../assets/icons/coffee-beans.svg";
@@ -7,70 +8,96 @@ import { Box } from "../../../ui/atoms/Box";
 import { Text } from "../../../ui/atoms/Text";
 import { useAppTheme } from "../../../ui/theme";
 
-export const BrewScreen = () => {
-	const {
-		colors: { textPrimary },
-	} = useAppTheme();
+type RecipeCharacteristicProps = {
+	Icon: React.ComponentType<SvgProps>;
+	label: string;
+};
+const RecipeCharacteristic = ({ Icon, label }: RecipeCharacteristicProps) => {
+	const { textPrimary } = useAppTheme().colors;
+
+	// TODO: Add shadow
 	return (
-		<Box paddingHorizontal="m">
+		<Box
+			flex={1}
+			alignItems="center"
+			justifyContent="space-between"
+			padding="m"
+			borderRadius={8}
+			borderColor="accentDark"
+			borderWidth={2}
+		>
+			<Icon width={48} height={48} fill={textPrimary} />
+			<Text variant="body">{label}</Text>
+			{/* Two Filters, rinsed */}
+		</Box>
+	);
+};
+
+export const BrewScreen = () => {
+	const recipe = {
+		name: "Smooothy",
+		author: "Adib",
+		source: "https://aeroprecipe.com/recipes/smooothy",
+		method: "AeroPress",
+		coffeeWeight: 14,
+		coffeeGrind: "Med-fine",
+	};
+	const steps = [
+		{ time: 0, description: "Bloom 40g of water" },
+		{ time: 30, description: "Add 180g water" },
+		{ time: 90, description: "Swirl" },
+		{ time: 110, description: "Press for 20 seconds" },
+		{ time: 130, description: "Enjoy!" },
+	];
+	return (
+		<Box paddingHorizontal="m" rowGap="m">
 			<Text variant="header">
-				Smooothy <Text fontFamily="Quicksand_400Regular">by Adib</Text>
+				{recipe.name}{" "}
+				<Text fontFamily="Quicksand_400Regular">by {recipe.author}</Text>
 			</Text>
-			<Pressable
-				onPress={() =>
-					Linking.openURL("https://aeroprecipe.com/recipes/smooothy")
-				}
-			>
+			<Pressable onPress={() => Linking.openURL(recipe.source)}>
 				<Box backgroundColor="accentLight" padding="m" borderRadius={4}>
 					<Text variant="action">Source: AeroPrecipe.</Text>
 				</Box>
 			</Pressable>
 			<Box flexDirection="row" columnGap="s" paddingVertical="s">
-				{/* TODO: Add shadow */}
-				<Box
-					flex={1}
-					alignItems="center"
-					justifyContent="space-between"
-					padding="m"
-					borderRadius={8}
-					borderColor="accentDark"
-					borderWidth={2}
-				>
-					<AeroPressIcon width={48} height={48} fill={textPrimary} />
-					<Text variant="body">AeroPress</Text>
-					{/* Two Filters, rinsed */}
-				</Box>
-				<Box
-					flex={1}
-					alignItems="center"
-					padding="m"
-					borderRadius={8}
-					borderColor="accentDark"
-					borderWidth={2}
-				>
-					<CoffeeBeansIcon width={48} height={48} fill={textPrimary} />
-					<Text variant="body">14g</Text>
-				</Box>
-				<Box
-					flex={1}
-					alignItems="center"
-					padding="m"
-					borderRadius={8}
-					borderColor="accentDark"
-					borderWidth={2}
-				>
-					<CoffeeScoopIcon width={48} height={48} fill={textPrimary} />
-					<Text variant="body">Med-fine</Text>
-					{/* 10 clicks on C3 */}
-				</Box>
+				<RecipeCharacteristic Icon={AeroPressIcon} label={recipe.method} />
+				<RecipeCharacteristic
+					Icon={CoffeeBeansIcon}
+					label={`${recipe.coffeeWeight}g`}
+				/>
+				<RecipeCharacteristic
+					Icon={CoffeeScoopIcon}
+					label={recipe.coffeeGrind}
+				/>
 			</Box>
-			<Text variant="body">
-				1. (0:00) Bloom 40g of water{"\n"}
-				2. (0:30) Add 180g water{"\n"}
-				3. (1:30) Swirl{"\n"}
-				4. (1:50) Press for 20 seconds{"\n"}
-				4. (2:10) Enjoy!
-			</Text>
+			<Text variant="subheader">Steps</Text>
+			<Box rowGap="s">
+				{steps.map(({ time, description }, ix) => (
+					<Box
+						key={`recipe-step-${ix}`}
+						borderColor="accentDark"
+						borderWidth={2}
+						padding="m"
+						borderRadius={4}
+						flexDirection="row"
+						justifyContent="space-between"
+					>
+						<Text variant="body">{description}</Text>
+						<Text variant="action">{formatTime(time)}</Text>
+					</Box>
+				))}
+			</Box>
 		</Box>
 	);
+};
+
+/**
+ * Formats the given time duration as MM:ss.
+ * @param time the number of seconds
+ */
+const formatTime = (time: number): string => {
+	const minutes = Math.floor(time / 60);
+	const seconds = time % 60;
+	return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 };
