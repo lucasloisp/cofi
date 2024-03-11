@@ -5,7 +5,7 @@ export type RecipeStep = {
 	description: string;
 };
 export type Recipe = {
-	id: number;
+	id: string;
 	name: string;
 	author: string;
 	source: string;

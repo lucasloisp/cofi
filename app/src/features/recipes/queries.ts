@@ -4,7 +4,7 @@ import { Recipe } from "./types";
 
 const MOCK_RECIPES: Recipe[] = [
 	{
-		id: 1,
+		id: "recipe.1",
 		name: "Smooothy",
 		author: "Adib",
 		source: "https://aeroprecipe.com/recipes/smooothy",
@@ -20,7 +20,7 @@ const MOCK_RECIPES: Recipe[] = [
 		],
 	},
 	{
-		id: 2,
+		id: "recipe.2",
 		name: "The AeroPress Flat White",
 		author: "@europeancoffeetrip",
 		source: "https://aeroprecipe.com/recipes/aeropress-flat-white",
@@ -53,7 +53,7 @@ export const useRecipes = () => {
 	});
 };
 
-export const useRecipe = (recipeId: number) => {
+export const useRecipe = (recipeId: string) => {
 	return useQuery<Recipe>({
 		queryKey: ["recipe", recipeId],
 		queryFn: async () => {

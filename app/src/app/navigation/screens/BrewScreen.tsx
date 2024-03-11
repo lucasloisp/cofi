@@ -17,10 +17,11 @@ import {
 } from "../../../features/recipes";
 import { Box } from "../../../ui/atoms/Box";
 import { Text } from "../../../ui/atoms/Text";
+import { BrewScreenProps } from "../types";
 
-export const BrewScreen = () => {
+export const BrewScreen = ({ route }: BrewScreenProps) => {
 	const insets = useSafeAreaInsets();
-	const { data: recipe, isError } = useRecipe(2);
+	const { data: recipe, isError } = useRecipe(route.params.recipeId);
 	const [stepDone, toggleStep] = useReducer(
 		(prev: number, ix: number) => (ix <= prev ? ix - 1 : ix),
 		-1,
