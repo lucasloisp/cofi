@@ -1,5 +1,11 @@
 import { useReducer } from "react";
-import { ActivityIndicator, Linking, Pressable } from "react-native";
+import {
+	ActivityIndicator,
+	Linking,
+	Pressable,
+	ScrollView,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../../assets/icons/coffee-beans.svg";
@@ -13,7 +19,8 @@ import { Box } from "../../../ui/atoms/Box";
 import { Text } from "../../../ui/atoms/Text";
 
 export const BrewScreen = () => {
-	const { data: recipe, isError } = useRecipe(1);
+	const insets = useSafeAreaInsets();
+	const { data: recipe, isError } = useRecipe(2);
 	const [stepDone, toggleStep] = useReducer(
 		(prev: number, ix: number) => (ix <= prev ? ix - 1 : ix),
 		-1,
@@ -34,7 +41,12 @@ export const BrewScreen = () => {
 		done: ix <= stepDone,
 	}));
 	return (
-		<Box paddingHorizontal="m" rowGap="m">
+		<Box
+			paddingHorizontal="m"
+			rowGap="m"
+			height="100%"
+			style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}
+		>
 			<Text variant="header">
 				{recipe.name}
 				<Text fontFamily="Quicksand_400Regular"> by {recipe.author}</Text>
@@ -56,13 +68,15 @@ export const BrewScreen = () => {
 				/>
 			</Box>
 			<Text variant="subheader">Steps</Text>
-			<Box rowGap="s">
-				{steps.map((step, ix) => (
-					<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
-						<RecipeStepTask step={step} />
-					</Pressable>
-				))}
-			</Box>
+			<ScrollView bounces>
+				<Box rowGap="s">
+					{steps.map((step, ix) => (
+						<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
+							<RecipeStepTask step={step} />
+						</Pressable>
+					))}
+				</Box>
+			</ScrollView>
 		</Box>
 	);
 };

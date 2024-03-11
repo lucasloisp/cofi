@@ -19,6 +19,23 @@ const MOCK_RECIPES: Recipe[] = [
 			{ time: 130, description: "Enjoy!" },
 		],
 	},
+	{
+		id: 2,
+		name: "The AeroPress Flat White",
+		author: "@europeancoffeetrip",
+		source: "https://aeroprecipe.com/recipes/aeropress-flat-white",
+		method: "AeroPress",
+		coffeeWeight: 14,
+		coffeeGrind: "Fine",
+		steps: [
+			{ time: 0, description: "Add 70g of water." },
+			{ time: 0, description: "Stir for 20 seconds" },
+			{ time: 20, description: "Press" },
+			{ time: 40, description: "Froth 100ml of milk (60℃)" },
+			{ time: 50, description: "Dilute the coffee" },
+			{ time: 60, description: "Enjoy!" },
+		],
+	},
 ];
 
 export const useRecipes = () => {
