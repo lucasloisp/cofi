@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Linking, Pressable } from "react-native";
 import type { SvgProps } from "react-native-svg";
 
@@ -12,6 +13,7 @@ type RecipeCharacteristicProps = {
 	Icon: React.ComponentType<SvgProps>;
 	label: string;
 };
+
 const RecipeCharacteristic = ({ Icon, label }: RecipeCharacteristicProps) => {
 	const { textPrimary } = useAppTheme().colors;
 
@@ -33,6 +35,44 @@ const RecipeCharacteristic = ({ Icon, label }: RecipeCharacteristicProps) => {
 	);
 };
 
+type RecipeStep = {
+	time: number;
+	description: string;
+	done: boolean;
+};
+
+type RecipeStepProps = {
+	step: RecipeStep;
+};
+
+const RecipeStepTask = ({
+	step: { time, done, description },
+}: RecipeStepProps) => {
+	return (
+		<Box
+			borderColor={done ? "mainBackground" : "accentLight"}
+			borderWidth={2}
+			padding="m"
+			borderRadius={4}
+			flexDirection="row"
+			justifyContent="space-between"
+		>
+			<Text
+				variant="body"
+				textDecorationLine={done ? "line-through" : undefined}
+			>
+				{description}
+			</Text>
+			<Text
+				variant="action"
+				textDecorationLine={done ? "line-through" : undefined}
+			>
+				{formatTime(time)}
+			</Text>
+		</Box>
+	);
+};
+
 export const BrewScreen = () => {
 	const recipe = {
 		name: "Smooothy",
@@ -42,13 +82,25 @@ export const BrewScreen = () => {
 		coffeeWeight: 14,
 		coffeeGrind: "Med-fine",
 	};
-	const steps = [
-		{ time: 0, description: "Bloom 40g of water" },
-		{ time: 30, description: "Add 180g water" },
-		{ time: 90, description: "Swirl" },
-		{ time: 110, description: "Press for 20 seconds" },
-		{ time: 130, description: "Enjoy!" },
-	];
+	const [steps, setSteps] = useState<RecipeStep[]>([
+		{ time: 0, description: "Bloom 40g of water", done: false },
+		{ time: 30, description: "Add 180g water", done: false },
+		{ time: 90, description: "Swirl", done: false },
+		{ time: 110, description: "Press for 20 seconds", done: false },
+		{ time: 130, description: "Enjoy!", done: false },
+	]);
+	const toggleStep = (ix: number) => {
+		setSteps((prev) => {
+			const { done: stepWasDone } = prev[ix];
+			return prev.map((step, index) => {
+				if (stepWasDone ? index >= ix : index <= ix) {
+					return { ...step, done: !stepWasDone };
+				} else {
+					return step;
+				}
+			});
+		});
+	};
 	return (
 		<Box paddingHorizontal="m" rowGap="m">
 			<Text variant="header">
@@ -73,19 +125,10 @@ export const BrewScreen = () => {
 			</Box>
 			<Text variant="subheader">Steps</Text>
 			<Box rowGap="s">
-				{steps.map(({ time, description }, ix) => (
-					<Box
-						key={`recipe-step-${ix}`}
-						borderColor="accentDark"
-						borderWidth={2}
-						padding="m"
-						borderRadius={4}
-						flexDirection="row"
-						justifyContent="space-between"
-					>
-						<Text variant="body">{description}</Text>
-						<Text variant="action">{formatTime(time)}</Text>
-					</Box>
+				{steps.map((step, ix) => (
+					<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
+						<RecipeStepTask step={step} />
+					</Pressable>
 				))}
 			</Box>
 		</Box>
