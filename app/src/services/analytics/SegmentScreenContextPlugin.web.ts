@@ -1,30 +1,32 @@
 import { NavigationContainerRef } from "@react-navigation/native";
 // eslint-disable-next-line no-restricted-imports
-import {
-	EventPlugin,
-	PluginType,
-	TrackEventType,
-} from "@segment/analytics-react-native";
+import type { Context, Plugin } from "@segment/analytics-next";
 
-export class SegmentScreenContextPlugin extends EventPlugin {
-	type = PluginType.enrichment;
+export class SegmentScreenContextPlugin implements Plugin {
+	name = "Segment Screen Context Plugin";
+	type = "enrichment" as const;
+	version = "1.0.0";
+	isLoaded() {
+		return true;
+	}
+	load() {
+		return Promise.resolve();
+	}
 
 	private navigationRef: NavigationContainerRef<any>;
 
 	constructor(navigationRef: NavigationContainerRef<any>) {
-		super();
 		this.navigationRef = navigationRef;
 	}
 
-	track(event: TrackEventType) {
+	track(ctx: Context) {
 		const routeName = this.navigationRef.getCurrentRoute()?.name;
 		if (routeName) {
-			const context = {
-				...(event.context ?? {}),
+			ctx.event.context = {
+				...(ctx.event.context ?? {}),
 				navigation: { screen: routeName },
 			};
-			event.context = context;
 		}
-		return event;
+		return ctx;
 	}
 }

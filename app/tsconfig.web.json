@@ -1,0 +1,7 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"moduleSuffixes": [".web", ""],
+		"typeRoots": ["./node_modules/@types", "./src/types/", "./src/types.web/"]
+	}
+}
