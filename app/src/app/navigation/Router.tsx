@@ -10,7 +10,11 @@ export const Router = () => {
 	return (
 		<AppStack.Navigator>
 			<AppStack.Screen name="Home" component={HomeScreen} />
-			<AppStack.Screen name="Brew" component={BrewScreen} />
+			<AppStack.Screen
+				name="Brew"
+				component={BrewScreen}
+				options={{ headerShown: false }}
+			/>
 		</AppStack.Navigator>
 	);
 };
