@@ -23,6 +23,7 @@ const theme = createTheme({
 		accentLight: palette.greenLight,
 	},
 	spacing: {
+		xs: 4,
 		s: 8,
 		m: 16,
 		l: 24,
@@ -36,6 +37,12 @@ const theme = createTheme({
 		subheader: {
 			fontFamily: "Quicksand_500Medium",
 			fontSize: 30,
+		},
+		emph: {
+			fontFamily: "Quicksand_600SemiBold",
+		},
+		light: {
+			fontFamily: "Quicksand_300Light",
 		},
 		body: {},
 		action: {

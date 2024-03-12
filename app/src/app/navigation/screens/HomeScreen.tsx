@@ -4,27 +4,36 @@ import { useRecipes } from "../../../features/recipes";
 import { Box } from "../../../ui/atoms/Box";
 import { Text } from "../../../ui/atoms/Text";
 import { HomeScreenProps } from "../types";
+import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
+import { useAppTheme } from "../../../ui/theme";
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
 	const { data } = useRecipes();
+	const {
+		spacing,
+		colors: { textPrimary },
+	} = useAppTheme();
 	return (
 		<FlatList
-			contentContainerStyle={{ gap: 16 }}
+			contentContainerStyle={{
+				gap: spacing.m,
+				paddingHorizontal: spacing.s,
+				paddingVertical: spacing.m,
+			}}
+			data={data}
 			renderItem={({ item }) => (
 				<Pressable
 					onPress={() => navigation.navigate("Brew", { recipeId: item.id })}
 				>
-					<Box
-						borderColor="accentDark"
-						borderRadius={4}
-						borderWidth={2}
-						padding="s"
-					>
-						<Text>{item.name}</Text>
+					<Box flexDirection="row" alignItems="center" gap="s">
+						<AeroPressIcon height={52} width={52} fill={textPrimary} />
+						<Box>
+							<Text variant="emph">{item.name}</Text>
+							<Text variant="light">by {item.author}</Text>
+						</Box>
 					</Box>
 				</Pressable>
 			)}
-			data={data}
 			keyExtractor={(item) => item.id}
 		/>
 	);
