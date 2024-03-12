@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { Recipe } from "./types";
+import { Recipe, RecipeHead } from "./types";
 
 const MOCK_RECIPES: Recipe[] = [
 	{
@@ -39,23 +39,30 @@ const MOCK_RECIPES: Recipe[] = [
 ];
 
 export const useRecipes = () => {
-	return useQuery({
+	return useQuery<RecipeHead[]>({
 		queryKey: ["recipes"],
 		queryFn: () =>
 			Promise.resolve(
-				MOCK_RECIPES.map(({ name, id, author, method }) => ({
+				MOCK_RECIPES.map(({ name, id, author, method, source }) => ({
 					name,
 					id,
 					author,
 					method,
+					source,
 				})),
 			),
 	});
 };
 
 export const useRecipe = (recipeId: string) => {
-	return useQuery<Recipe>({
-		queryKey: ["recipe", recipeId],
+	const client = useQueryClient();
+	return useQuery<Partial<Recipe> & RecipeHead>({
+		queryKey: ["recipes", recipeId],
+		initialData: () => {
+			return client
+				.getQueryData<RecipeHead[]>(["recipes"])
+				?.find((r) => r.id === recipeId);
+		},
 		queryFn: async () => {
 			const recipe = MOCK_RECIPES.find((r) => r.id === recipeId);
 			if (!recipe) {

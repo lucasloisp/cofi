@@ -1,19 +1,14 @@
 import { useReducer } from "react";
-import {
-	ActivityIndicator,
-	Linking,
-	Pressable,
-	ScrollView,
-} from "react-native";
+import { ActivityIndicator, Linking, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../../assets/icons/coffee-beans.svg";
 import CoffeeScoopIcon from "../../../../assets/icons/coffee-scoop.svg";
 import {
-	RecipeStepTask,
 	RecipeCharacteristic,
 	useRecipe,
+	RecipeStepList,
 } from "../../../features/recipes";
 import { Box } from "../../../ui/atoms/Box";
 import { Text } from "../../../ui/atoms/Text";
@@ -37,10 +32,6 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 	if (!recipe) {
 		return <ActivityIndicator size="large" />;
 	}
-	const steps = recipe.steps.map((step, ix) => ({
-		...step,
-		done: ix <= stepDone,
-	}));
 	return (
 		<Box
 			paddingHorizontal="m"
@@ -61,23 +52,23 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 				<RecipeCharacteristic Icon={AeroPressIcon} label={recipe.method} />
 				<RecipeCharacteristic
 					Icon={CoffeeBeansIcon}
-					label={`${recipe.coffeeWeight}g`}
+					label={`${recipe.coffeeWeight ?? "- "}g`}
 				/>
 				<RecipeCharacteristic
 					Icon={CoffeeScoopIcon}
-					label={recipe.coffeeGrind}
+					label={recipe.coffeeGrind ?? "-"}
 				/>
 			</Box>
 			<Text variant="subheader">Steps</Text>
-			<ScrollView bounces>
-				<Box rowGap="s">
-					{steps.map((step, ix) => (
-						<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
-							<RecipeStepTask step={step} />
-						</Pressable>
-					))}
-				</Box>
-			</ScrollView>
+			{recipe.steps ? (
+				<RecipeStepList
+					steps={recipe.steps}
+					stepDone={stepDone}
+					toggleStep={toggleStep}
+				/>
+			) : (
+				<ActivityIndicator />
+			)}
 		</Box>
 	);
 };

@@ -14,3 +14,8 @@ export type Recipe = {
 	coffeeGrind: CoffeeGrind;
 	steps: RecipeStep[];
 };
+
+export type RecipeHead = Pick<
+	Recipe,
+	"id" | "author" | "name" | "method" | "source"
+>;

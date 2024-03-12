@@ -3,11 +3,13 @@ import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";
 
 type RecipeStepProps = {
-	step: RecipeStep & { done: boolean };
+	step: RecipeStep;
+	done: boolean;
 };
 
 export const RecipeStepTask = ({
-	step: { time, done, description },
+	step: { time, description },
+	done,
 }: RecipeStepProps) => {
 	return (
 		<Box
