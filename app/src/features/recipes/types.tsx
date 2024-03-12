@@ -10,10 +10,12 @@ export type Recipe = {
 	author: string;
 	source: string;
 	method: CoffeeMethod;
-	coffeeWeight: number;
 	coffeeGrind: CoffeeGrind;
 	steps: RecipeStep[];
-};
+} & (
+	| { coffeeWeight: number; coffeeRatio?: undefined }
+	| { coffeeWeight?: undefined; coffeeRatio: number }
+);
 
 export type RecipeHead = Pick<
 	Recipe,

@@ -42,7 +42,7 @@ const MOCK_RECIPES: Recipe[] = [
 		author: "James Hoffmann",
 		source: "https://www.youtube.com/watch?v=st571DYYTR8",
 		method: "French Press",
-		coffeeWeight: 30,
+		coffeeRatio: 30 / 500,
 		coffeeGrind: "Coarse", // 14 clicks
 		steps: [
 			{ time: 0, description: "Don't be in a Hurry" },
