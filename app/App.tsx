@@ -1,3 +1,4 @@
+import "./polyfills";
 import {
 	useFonts,
 	Quicksand_400Regular,
