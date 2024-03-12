@@ -36,6 +36,24 @@ const MOCK_RECIPES: Recipe[] = [
 			{ time: 60, description: "Enjoy!" },
 		],
 	},
+	{
+		id: "recipe.3",
+		name: "Ultimate French Press",
+		author: "James Hoffmann",
+		source: "https://www.youtube.com/watch?v=st571DYYTR8",
+		method: "French Press",
+		coffeeWeight: 30,
+		coffeeGrind: "Coarse", // 14 clicks
+		steps: [
+			{ time: 0, description: "Don't be in a Hurry" },
+			{ time: 0, description: "Add 500ml water" },
+			{ time: 60 * 4, description: "Stir the crust" },
+			{ time: 60 * 4, description: "Scoop off the foam" },
+			{ time: 60 * 9, description: "Put the plunger in, to the surface" },
+			{ time: 60 * 9, description: "Pur the coffee into the cup" },
+			{ time: 60 * 9, description: "Enjoy!" },
+		],
+	},
 ];
 
 export const useRecipes = () => {
