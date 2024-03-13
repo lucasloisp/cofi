@@ -14,12 +14,15 @@ import {
 	useNavigationContainerRef,
 } from "@react-navigation/native";
 import { ThemeProvider, useTheme } from "@shopify/restyle";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { Router } from "./src/app/navigation/Router";
-import { trackScreen } from "./src/services/analytics";
 import { QueryProvider } from "./src/services/queries";
 import theme, { Theme } from "./src/ui/theme";
+import {
+	AnalyticsProvider,
+	useTrackNavigation,
+} from "./src/services/analytics";
 
 const AppNavigationContainer = () => {
 	const appTheme = useTheme<Theme>();
@@ -38,14 +41,12 @@ const AppNavigationContainer = () => {
 		[appTheme],
 	);
 	const navigationRef = useNavigationContainerRef();
+	const { onStateChange } = useTrackNavigation(navigationRef);
 	return (
 		<NavigationContainer
 			ref={navigationRef}
 			theme={navigationTheme}
-			onStateChange={() => {
-				const route = navigationRef.getCurrentRoute();
-				route && trackScreen(route.name);
-			}}
+			onStateChange={onStateChange}
 		>
 			<Router />
 		</NavigationContainer>
@@ -67,9 +68,11 @@ export default function App() {
 
 	return (
 		<QueryProvider>
-			<ThemeProvider theme={theme}>
-				<AppNavigationContainer />
-			</ThemeProvider>
+			<AnalyticsProvider>
+				<ThemeProvider theme={theme}>
+					<AppNavigationContainer />
+				</ThemeProvider>
+			</AnalyticsProvider>
 		</QueryProvider>
 	);
 }
