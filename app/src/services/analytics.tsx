@@ -1,7 +1,7 @@
 import { createClient } from "@segment/analytics-react-native";
 
 const segmentClient = createClient({
-	writeKey: "REDACTED",
+	writeKey: process.env.EXPO_PUBLIC_SEGMENT_KEY!,
 	trackAppLifecycleEvents: true,
 });
 
