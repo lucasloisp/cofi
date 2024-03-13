@@ -11,11 +11,13 @@ import {
 	DefaultTheme as DefaultNavigationTheme,
 	NavigationContainer,
 	Theme as NavigationTheme,
+	useNavigationContainerRef,
 } from "@react-navigation/native";
 import { ThemeProvider, useTheme } from "@shopify/restyle";
 import { useMemo } from "react";
 
 import { Router } from "./src/app/navigation/Router";
+import { trackScreen } from "./src/services/analytics";
 import { QueryProvider } from "./src/services/queries";
 import theme, { Theme } from "./src/ui/theme";
 
@@ -35,8 +37,16 @@ const AppNavigationContainer = () => {
 		}),
 		[appTheme],
 	);
+	const navigationRef = useNavigationContainerRef();
 	return (
-		<NavigationContainer theme={navigationTheme}>
+		<NavigationContainer
+			ref={navigationRef}
+			theme={navigationTheme}
+			onStateChange={() => {
+				const route = navigationRef.getCurrentRoute();
+				route && trackScreen(route.name);
+			}}
+		>
 			<Router />
 		</NavigationContainer>
 	);
