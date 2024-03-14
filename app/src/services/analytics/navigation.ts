@@ -1,12 +1,20 @@
 import { NavigationContainerRef } from "@react-navigation/native";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
-import { useScreenCall } from "./segment";
+import { SegmentScreenContextPlugin } from "./SegmentScreenContextPlugin";
+import { usePlugin, useScreenCall } from "./segment";
 
 export const useTrackNavigation = (
 	navigationRef: NavigationContainerRef<any>,
 ) => {
 	const screenCall = useScreenCall();
+
+	usePlugin(
+		useMemo(
+			() => new SegmentScreenContextPlugin(navigationRef),
+			[navigationRef],
+		),
+	);
 
 	const onStateChange = useCallback(() => {
 		const route = navigationRef.getCurrentRoute();

@@ -2,7 +2,9 @@ import {
 	createClient,
 	AnalyticsProvider,
 	useAnalytics,
+	Plugin,
 } from "@segment/analytics-react-native";
+import { useEffect } from "react";
 
 import { ScreenCall, TrackCall } from "./types";
 
@@ -22,3 +24,11 @@ export const SegmentClientProvider = ({
 
 export const useScreenCall = (): ScreenCall => useAnalytics().screen;
 export const useTrackCall = (): TrackCall => useAnalytics().track;
+export const usePlugin = (plugin: Plugin) => {
+	const client = useAnalytics();
+	useEffect(() => {
+		segmentClient.add({ plugin });
+
+		return () => segmentClient.remove({ plugin });
+	}, [client, plugin]);
+};
