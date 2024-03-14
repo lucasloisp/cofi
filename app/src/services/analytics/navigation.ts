@@ -1,6 +1,7 @@
 import { NavigationContainerRef } from "@react-navigation/native";
-import { useScreenCall } from "./segment";
 import { useCallback } from "react";
+
+import { useScreenCall } from "./segment";
 
 export const useTrackNavigation = (
 	navigationRef: NavigationContainerRef<any>,

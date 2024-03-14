@@ -17,12 +17,12 @@ import { ThemeProvider, useTheme } from "@shopify/restyle";
 import React, { useMemo } from "react";
 
 import { Router } from "./src/app/navigation/Router";
-import { QueryProvider } from "./src/services/queries";
-import theme, { Theme } from "./src/ui/theme";
 import {
 	AnalyticsProvider,
 	useTrackNavigation,
 } from "./src/services/analytics";
+import { QueryProvider } from "./src/services/queries";
+import theme, { Theme } from "./src/ui/theme";
 
 const AppNavigationContainer = () => {
 	const appTheme = useTheme<Theme>();

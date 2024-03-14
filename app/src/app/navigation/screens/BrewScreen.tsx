@@ -1,11 +1,5 @@
 import { useReducer, useState } from "react";
-import {
-	ActivityIndicator,
-	Button,
-	Linking,
-	Pressable,
-	TextInput,
-} from "react-native";
+import { ActivityIndicator, Linking, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
