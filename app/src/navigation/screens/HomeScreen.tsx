@@ -1,10 +1,10 @@
 import { FlatList, Pressable } from "react-native";
 
-import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
-import { useRecipes } from "../../../features/recipes";
-import { Box } from "../../../ui/atoms/Box";
-import { Text } from "../../../ui/atoms/Text";
-import { useAppTheme } from "../../../ui/theme";
+import AeroPressIcon from "../../../assets/icons/aeropress.svg";
+import { useRecipes } from "../../features/recipes";
+import { Box } from "../../ui/atoms/Box";
+import { Text } from "../../ui/atoms/Text";
+import { useAppTheme } from "../../ui/theme";
 import { HomeScreenProps } from "../types";
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {

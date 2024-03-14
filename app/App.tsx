@@ -7,51 +7,13 @@ import {
 	Quicksand_700Bold,
 	Quicksand_300Light,
 } from "@expo-google-fonts/quicksand";
-import {
-	DefaultTheme as DefaultNavigationTheme,
-	NavigationContainer,
-	Theme as NavigationTheme,
-	useNavigationContainerRef,
-} from "@react-navigation/native";
-import { ThemeProvider, useTheme } from "@shopify/restyle";
-import React, { useMemo } from "react";
+import { ThemeProvider } from "@shopify/restyle";
+import React from "react";
 
-import { Router } from "./src/app/navigation/Router";
-import {
-	AnalyticsProvider,
-	useTrackNavigation,
-} from "./src/services/analytics";
+import { AppNavigationContainer } from "./src/navigation";
+import { AnalyticsProvider } from "./src/services/analytics";
 import { QueryProvider } from "./src/services/queries";
-import theme, { Theme } from "./src/ui/theme";
-
-const AppNavigationContainer = () => {
-	const appTheme = useTheme<Theme>();
-	const navigationTheme: NavigationTheme = useMemo(
-		() => ({
-			...DefaultNavigationTheme,
-			colors: {
-				...DefaultNavigationTheme.colors,
-				background: appTheme.colors.mainBackground,
-				primary: appTheme.colors.accent,
-				border: appTheme.colors.accentDark,
-				card: appTheme.colors.cardPrimaryBackground,
-				text: appTheme.colors.textSecondary,
-			},
-		}),
-		[appTheme],
-	);
-	const navigationRef = useNavigationContainerRef();
-	const { onStateChange } = useTrackNavigation(navigationRef);
-	return (
-		<NavigationContainer
-			ref={navigationRef}
-			theme={navigationTheme}
-			onStateChange={onStateChange}
-		>
-			<Router />
-		</NavigationContainer>
-	);
-};
+import theme from "./src/ui/theme";
 
 export default function App() {
 	const [fontsLoaded, fontError] = useFonts({
