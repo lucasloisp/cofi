@@ -3,7 +3,8 @@ import {
 	AnalyticsProvider,
 	useAnalytics,
 } from "@segment/analytics-react-native";
-import { ScreenCall } from "./types";
+
+import { ScreenCall, TrackCall } from "./types";
 
 const segmentClient = createClient({
 	//@ts-ignore
@@ -20,3 +21,4 @@ export const SegmentClientProvider = ({
 };
 
 export const useScreenCall = (): ScreenCall => useAnalytics().screen;
+export const useTrackCall = (): TrackCall => useAnalytics().track;
