@@ -1,3 +1,4 @@
+import "./polyfills";
 import {
 	useFonts,
 	Quicksand_400Regular,
@@ -6,40 +7,13 @@ import {
 	Quicksand_700Bold,
 	Quicksand_300Light,
 } from "@expo-google-fonts/quicksand";
-import {
-	DefaultTheme as DefaultNavigationTheme,
-	NavigationContainer,
-	Theme as NavigationTheme,
-} from "@react-navigation/native";
-import { ThemeProvider, useTheme } from "@shopify/restyle";
-import { useMemo } from "react";
+import { ThemeProvider } from "@shopify/restyle";
+import React from "react";
 
-import { Router } from "./src/app/navigation/Router";
+import { AppNavigationContainer } from "./src/navigation";
+import { AnalyticsProvider } from "./src/services/analytics";
 import { QueryProvider } from "./src/services/queries";
-import theme, { Theme } from "./src/ui/theme";
-
-const AppNavigationContainer = () => {
-	const appTheme = useTheme<Theme>();
-	const navigationTheme: NavigationTheme = useMemo(
-		() => ({
-			...DefaultNavigationTheme,
-			colors: {
-				...DefaultNavigationTheme.colors,
-				background: appTheme.colors.mainBackground,
-				primary: appTheme.colors.accent,
-				border: appTheme.colors.accentDark,
-				card: appTheme.colors.cardPrimaryBackground,
-				text: appTheme.colors.textSecondary,
-			},
-		}),
-		[appTheme],
-	);
-	return (
-		<NavigationContainer theme={navigationTheme}>
-			<Router />
-		</NavigationContainer>
-	);
-};
+import theme from "./src/ui/theme";
 
 export default function App() {
 	const [fontsLoaded, fontError] = useFonts({
@@ -56,9 +30,11 @@ export default function App() {
 
 	return (
 		<QueryProvider>
-			<ThemeProvider theme={theme}>
-				<AppNavigationContainer />
-			</ThemeProvider>
+			<AnalyticsProvider>
+				<ThemeProvider theme={theme}>
+					<AppNavigationContainer />
+				</ThemeProvider>
+			</AnalyticsProvider>
 		</QueryProvider>
 	);
 }

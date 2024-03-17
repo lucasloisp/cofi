@@ -1,6 +1,6 @@
 import { Pressable, ScrollView } from "react-native";
 
-import { RecipeStepTask } from ".";
+import { RecipeStepTask } from "./RecipeStepTask";
 import { Recipe } from "./types";
 import { Box } from "../../ui/atoms/Box";
 

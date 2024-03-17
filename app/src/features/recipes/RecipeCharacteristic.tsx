@@ -15,7 +15,6 @@ export const RecipeCharacteristic = ({
 }: RecipeCharacteristicProps) => {
 	const { textPrimary } = useAppTheme().colors;
 
-	// TODO: Add shadow
 	return (
 		<Box
 			flex={1}
@@ -28,7 +27,6 @@ export const RecipeCharacteristic = ({
 		>
 			<Icon width={48} height={48} fill={textPrimary} />
 			<Text variant="body">{label}</Text>
-			{/* Two Filters, rinsed */}
 		</Box>
 	);
 };

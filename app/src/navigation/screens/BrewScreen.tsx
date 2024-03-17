@@ -1,23 +1,18 @@
 import { useReducer, useState } from "react";
-import {
-	ActivityIndicator,
-	Button,
-	Linking,
-	Pressable,
-	TextInput,
-} from "react-native";
+import { ActivityIndicator, Linking, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import AeroPressIcon from "../../../../assets/icons/aeropress.svg";
-import CoffeeBeansIcon from "../../../../assets/icons/coffee-beans.svg";
-import CoffeeScoopIcon from "../../../../assets/icons/coffee-scoop.svg";
+import AeroPressIcon from "../../../assets/icons/aeropress.svg";
+import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
+import CoffeeScoopIcon from "../../../assets/icons/coffee-scoop.svg";
 import {
 	RecipeCharacteristic,
 	useRecipe,
 	RecipeStepList,
-} from "../../../features/recipes";
-import { Box } from "../../../ui/atoms/Box";
-import { Text } from "../../../ui/atoms/Text";
+} from "../../features/recipes";
+import { Box } from "../../ui/atoms/Box";
+import { Button } from "../../ui/atoms/Button";
+import { Text } from "../../ui/atoms/Text";
 import { BrewScreenProps } from "../types";
 
 export const BrewScreen = ({ route }: BrewScreenProps) => {
@@ -54,11 +49,12 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 				{recipe.name}
 				<Text fontFamily="Quicksand_400Regular"> by {recipe.author}</Text>
 			</Text>
-			<Pressable onPress={() => Linking.openURL(recipe.source)}>
-				<Box backgroundColor="accentLight" padding="m" borderRadius={4}>
-					<Text variant="action">Source: AeroPrecipe.</Text>
-				</Box>
-			</Pressable>
+			<Button
+				onPress={() => Linking.openURL(recipe.source)}
+				tracking="RecipeSourceButton"
+			>
+				Source: AeroPrecipe.
+			</Button>
 			{recipeIsScalable && (
 				<>
 					<Box flexDirection="row" alignItems="center" columnGap="s">
