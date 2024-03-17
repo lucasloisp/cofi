@@ -1,7 +1,7 @@
 {
 	"expo": {
 		"name": "Cofi",
-		"slug": "Cofi",
+		"slug": "cofi-companion",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
@@ -27,6 +27,12 @@
 		"web": {
 			"favicon": "./assets/favicon.png"
 		},
-		"plugins": ["expo-font"]
+		"plugins": ["expo-font"],
+		"extra": {
+			"eas": {
+				"projectId": "4a2869f7-ecb4-4c01-8f75-07419b512c79"
+			}
+		},
+		"owner": "lucasloisp"
 	}
 }
