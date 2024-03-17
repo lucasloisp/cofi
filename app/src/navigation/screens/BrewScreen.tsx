@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AeroPressIcon from "../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
 import CoffeeScoopIcon from "../../../assets/icons/coffee-scoop.svg";
+import { BrewTimer } from "../../features/brew/BrewTimer";
 import {
 	RecipeCharacteristic,
 	useRecipe,
@@ -14,7 +15,6 @@ import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
 import { BrewScreenProps } from "../types";
-import { BrewTimer } from "../../features/brew/BrewTimer";
 
 export const BrewScreen = ({ route }: BrewScreenProps) => {
 	const insets = useSafeAreaInsets();
