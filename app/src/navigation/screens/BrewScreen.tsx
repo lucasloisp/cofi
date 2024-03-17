@@ -14,6 +14,7 @@ import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
 import { BrewScreenProps } from "../types";
+import { BrewTimer } from "../../features/brew/BrewTimer";
 
 export const BrewScreen = ({ route }: BrewScreenProps) => {
 	const insets = useSafeAreaInsets();
@@ -89,6 +90,7 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 					label={recipe.coffeeGrind ?? "-"}
 				/>
 			</Box>
+			<BrewTimer />
 			<Text variant="subheader">Steps</Text>
 			{recipe.steps ? (
 				<RecipeStepList

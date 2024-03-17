@@ -1,4 +1,5 @@
 import { RecipeStep } from "./types";
+import { formatSeconds } from "../../services/time";
 import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";
 
@@ -30,18 +31,8 @@ export const RecipeStepTask = ({
 				variant="action"
 				textDecorationLine={done ? "line-through" : undefined}
 			>
-				{formatTime(time)}
+				{formatSeconds(time)}
 			</Text>
 		</Box>
 	);
-};
-
-/**
- * Formats the given time duration as MM:ss.
- * @param time the number of seconds
- */
-const formatTime = (time: number): string => {
-	const minutes = Math.floor(time / 60);
-	const seconds = time % 60;
-	return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 };
