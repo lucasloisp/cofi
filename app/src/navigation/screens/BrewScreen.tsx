@@ -1,6 +1,5 @@
 import { useReducer, useState } from "react";
-import { ActivityIndicator, Linking, Pressable } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ActivityIndicator, Linking } from "react-native";
 
 import AeroPressIcon from "../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
@@ -17,7 +16,6 @@ import { Text } from "../../ui/atoms/Text";
 import { BrewScreenProps } from "../types";
 
 export const BrewScreen = ({ route }: BrewScreenProps) => {
-	const insets = useSafeAreaInsets();
 	const { data: recipe, isError } = useRecipe(route.params.recipeId);
 	const [drinkSize, setDrinkSize] = useState(120);
 	const [stepDone, toggleStep] = useReducer(
@@ -40,12 +38,7 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 		? recipe.coffeeRatio * drinkSize
 		: recipe.coffeeWeight;
 	return (
-		<Box
-			paddingHorizontal="m"
-			rowGap="m"
-			height="100%"
-			style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}
-		>
+		<Box paddingHorizontal="m" rowGap="m" height="100%">
 			<Text variant="header">
 				{recipe.name}
 				<Text fontFamily="Quicksand_400Regular"> by {recipe.author}</Text>

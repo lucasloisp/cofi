@@ -17,7 +17,7 @@ export const Router = () => {
 			<AppStack.Screen
 				name="Brew"
 				component={BrewScreen}
-				options={{ headerShown: false }}
+				options={{ title: "" }}
 			/>
 		</AppStack.Navigator>
 	);
