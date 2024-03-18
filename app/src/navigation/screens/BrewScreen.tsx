@@ -4,7 +4,9 @@ import { ActivityIndicator, Linking } from "react-native";
 import AeroPressIcon from "../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
 import CoffeeScoopIcon from "../../../assets/icons/coffee-scoop.svg";
+import { BrewSizeAdjustment } from "../../features/brew/BrewSizeAdjustment";
 import { BrewTimer } from "../../features/brew/BrewTimer";
+import { CUP_SIZE_ML } from "../../features/brew/constants";
 import {
 	RecipeCharacteristic,
 	useRecipe,
@@ -17,7 +19,7 @@ import { BrewScreenProps } from "../types";
 
 export const BrewScreen = ({ route }: BrewScreenProps) => {
 	const { data: recipe, isError } = useRecipe(route.params.recipeId);
-	const [drinkSize, setDrinkSize] = useState(120);
+	const [drinkSize, setDrinkSize] = useState(CUP_SIZE_ML);
 	const [stepDone, toggleStep] = useReducer(
 		(prev: number, ix: number) => (ix <= prev ? ix - 1 : ix),
 		-1,
@@ -61,36 +63,7 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 				/>
 			</Box>
 			{recipeIsScalable && (
-				<>
-					<Box
-						flexDirection="row"
-						alignItems="center"
-						justifyContent="space-between"
-						columnGap="s"
-					>
-						<Box flex={1}>
-							<Button
-								tracking="BrewSizeDecreaseButton"
-								textAlign="center"
-								onPress={() => setDrinkSize(drinkSize - 60)}
-							>
-								Less
-							</Button>
-						</Box>
-						<Box flex={1}>
-							<Text>{drinkSize} ml</Text>
-						</Box>
-						<Box flex={1}>
-							<Button
-								tracking="BrewSizeIncreaseButton"
-								textAlign="center"
-								onPress={() => setDrinkSize(drinkSize + 60)}
-							>
-								More
-							</Button>
-						</Box>
-					</Box>
-				</>
+				<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />
 			)}
 			<BrewTimer />
 			<Text variant="subheader">Steps</Text>
