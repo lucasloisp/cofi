@@ -49,6 +49,17 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 			>
 				Source: AeroPrecipe.
 			</Button>
+			<Box flexDirection="row" columnGap="s" paddingVertical="s">
+				<RecipeCharacteristic Icon={AeroPressIcon} label={recipe.method} />
+				<RecipeCharacteristic
+					Icon={CoffeeBeansIcon}
+					label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
+				/>
+				<RecipeCharacteristic
+					Icon={CoffeeScoopIcon}
+					label={recipe.coffeeGrind ?? "-"}
+				/>
+			</Box>
 			{recipeIsScalable && (
 				<>
 					<Box
@@ -81,17 +92,6 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 					</Box>
 				</>
 			)}
-			<Box flexDirection="row" columnGap="s" paddingVertical="s">
-				<RecipeCharacteristic Icon={AeroPressIcon} label={recipe.method} />
-				<RecipeCharacteristic
-					Icon={CoffeeBeansIcon}
-					label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
-				/>
-				<RecipeCharacteristic
-					Icon={CoffeeScoopIcon}
-					label={recipe.coffeeGrind ?? "-"}
-				/>
-			</Box>
 			<BrewTimer />
 			<Text variant="subheader">Steps</Text>
 			{recipe.steps ? (
