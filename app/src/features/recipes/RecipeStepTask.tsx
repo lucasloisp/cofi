@@ -14,8 +14,9 @@ export const RecipeStepTask = ({
 }: RecipeStepProps) => {
 	return (
 		<Box
-			borderColor={done ? "mainBackground" : "accentLight"}
-			borderWidth={2}
+			backgroundColor="cardBackground"
+			borderColor="cardHighlight"
+			borderWidth={1}
 			padding="m"
 			borderRadius={4}
 			flexDirection="row"
@@ -23,12 +24,14 @@ export const RecipeStepTask = ({
 		>
 			<Text
 				variant="body"
+				color="textTertiary"
 				textDecorationLine={done ? "line-through" : undefined}
 			>
 				{description}
 			</Text>
 			<Text
 				variant="action"
+				color="textTertiary"
 				textDecorationLine={done ? "line-through" : undefined}
 			>
 				{formatSeconds(time)}

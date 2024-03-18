@@ -1,26 +1,17 @@
 import { createTheme, useTheme } from "@shopify/restyle";
 
-const palette = {
-	purpleLight: "#8C6FF7",
-	purplePrimary: "#5A31F4",
-	purpleDark: "#3F22AB",
-	greenLight: "#56DCBA",
-	greenPrimary: "#0ECD9D",
-	greenDark: "#0A906E",
-	grey: "#373B45",
-	black: "#0B0B0B",
-	white: "#F0F2F3",
-};
-
+// https://www.happyhues.co/palettes/10
 const theme = createTheme({
 	colors: {
-		mainBackground: palette.grey,
-		cardPrimaryBackground: palette.white,
-		textPrimary: palette.white,
-		textSecondary: palette.grey,
-		accent: palette.greenPrimary,
-		accentDark: palette.greenDark,
-		accentLight: palette.greenLight,
+		mainBackground: "#004643",
+		cardPrimaryBackground: "#ABD1C6",
+		textPrimary: "#ABD1C6",
+		textSecondary: "#001E1D",
+		textTertiary: "#0F3433",
+		accent: "#F9BC60",
+		accentDark: "#F6A01D",
+		cardBackground: "#E8E4E6",
+		cardHighlight: "#001E1D",
 	},
 	spacing: {
 		xs: 4,

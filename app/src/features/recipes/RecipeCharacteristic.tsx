@@ -13,7 +13,7 @@ export const RecipeCharacteristic = ({
 	Icon,
 	label,
 }: RecipeCharacteristicProps) => {
-	const { textPrimary } = useAppTheme().colors;
+	const { colors } = useAppTheme();
 
 	return (
 		<Box
@@ -22,11 +22,11 @@ export const RecipeCharacteristic = ({
 			justifyContent="space-between"
 			padding="m"
 			borderRadius={8}
-			borderColor="accentDark"
+			borderColor="accent"
 			borderWidth={2}
 		>
-			<Icon width={48} height={48} fill={textPrimary} />
-			<Text variant="body">{label}</Text>
+			<Icon width={48} height={48} fill={colors.textPrimary} />
+			<Text variant="action">{label}</Text>
 		</Box>
 	);
 };

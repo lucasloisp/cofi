@@ -58,24 +58,33 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 			</Button>
 			{recipeIsScalable && (
 				<>
-					<Box flexDirection="row" alignItems="center" columnGap="s">
-						<Pressable
-							onPress={() => setDrinkSize(drinkSize - 60)}
-							style={{ flex: 1 }}
-						>
-							<Box backgroundColor="accentLight" padding="s">
-								<Text textAlign="center">Less</Text>
-							</Box>
-						</Pressable>
-						<Text>{drinkSize} ml</Text>
-						<Pressable
-							onPress={() => setDrinkSize(drinkSize + 60)}
-							style={{ flex: 1 }}
-						>
-							<Box backgroundColor="accentLight" padding="s">
-								<Text textAlign="center">More</Text>
-							</Box>
-						</Pressable>
+					<Box
+						flexDirection="row"
+						alignItems="center"
+						justifyContent="space-between"
+						columnGap="s"
+					>
+						<Box flex={1}>
+							<Button
+								tracking="BrewSizeDecreaseButton"
+								textAlign="center"
+								onPress={() => setDrinkSize(drinkSize - 60)}
+							>
+								Less
+							</Button>
+						</Box>
+						<Box flex={1}>
+							<Text>{drinkSize} ml</Text>
+						</Box>
+						<Box flex={1}>
+							<Button
+								tracking="BrewSizeIncreaseButton"
+								textAlign="center"
+								onPress={() => setDrinkSize(drinkSize + 60)}
+							>
+								More
+							</Button>
+						</Box>
 					</Box>
 				</>
 			)}

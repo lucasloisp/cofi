@@ -9,7 +9,11 @@ const AppStack = createNativeStackNavigator<AppStackParamList>();
 export const Router = () => {
 	return (
 		<AppStack.Navigator>
-			<AppStack.Screen name="Home" component={HomeScreen} />
+			<AppStack.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{ title: "Cofi" }}
+			/>
 			<AppStack.Screen
 				name="Brew"
 				component={BrewScreen}
