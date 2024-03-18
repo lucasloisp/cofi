@@ -1,5 +1,6 @@
 import { useReducer, useState } from "react";
-import { ActivityIndicator, Linking } from "react-native";
+import { ActivityIndicator, Linking, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import AeroPressIcon from "../../../assets/icons/aeropress.svg";
 import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
@@ -24,6 +25,7 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 		(prev: number, ix: number) => (ix <= prev ? ix - 1 : ix),
 		-1,
 	);
+	const insets = useSafeAreaInsets();
 
 	if (isError) {
 		return (
@@ -40,42 +42,44 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 		? recipe.coffeeRatio * drinkSize
 		: recipe.coffeeWeight;
 	return (
-		<Box paddingHorizontal="m" rowGap="m" height="100%">
-			<Text variant="header">
-				{recipe.name}
-				<Text fontFamily="Quicksand_400Regular"> by {recipe.author}</Text>
-			</Text>
-			<Button
-				onPress={() => Linking.openURL(recipe.source)}
-				tracking="RecipeSourceButton"
-			>
-				Source: AeroPrecipe.
-			</Button>
-			<Box flexDirection="row" columnGap="s" paddingVertical="s">
-				<RecipeCharacteristic Icon={AeroPressIcon} label={recipe.method} />
-				<RecipeCharacteristic
-					Icon={CoffeeBeansIcon}
-					label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
-				/>
-				<RecipeCharacteristic
-					Icon={CoffeeScoopIcon}
-					label={recipe.coffeeGrind ?? "-"}
-				/>
+		<ScrollView contentInset={{ bottom: insets.bottom }}>
+			<Box paddingHorizontal="m" paddingBottom="m" rowGap="m" height="100%">
+				<Text variant="header">
+					{recipe.name}
+					<Text fontFamily="Quicksand_400Regular"> by {recipe.author}</Text>
+				</Text>
+				<Button
+					onPress={() => Linking.openURL(recipe.source)}
+					tracking="RecipeSourceButton"
+				>
+					Source: AeroPrecipe.
+				</Button>
+				<Box flexDirection="row" columnGap="s" paddingVertical="s">
+					<RecipeCharacteristic Icon={AeroPressIcon} label={recipe.method} />
+					<RecipeCharacteristic
+						Icon={CoffeeBeansIcon}
+						label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
+					/>
+					<RecipeCharacteristic
+						Icon={CoffeeScoopIcon}
+						label={recipe.coffeeGrind ?? "-"}
+					/>
+				</Box>
+				{recipeIsScalable && (
+					<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />
+				)}
+				<BrewTimer />
+				<Text variant="subheader">Steps</Text>
+				{recipe.steps ? (
+					<RecipeStepList
+						steps={recipe.steps}
+						stepDone={stepDone}
+						toggleStep={toggleStep}
+					/>
+				) : (
+					<ActivityIndicator />
+				)}
 			</Box>
-			{recipeIsScalable && (
-				<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />
-			)}
-			<BrewTimer />
-			<Text variant="subheader">Steps</Text>
-			{recipe.steps ? (
-				<RecipeStepList
-					steps={recipe.steps}
-					stepDone={stepDone}
-					toggleStep={toggleStep}
-				/>
-			) : (
-				<ActivityIndicator />
-			)}
-		</Box>
+		</ScrollView>
 	);
 };

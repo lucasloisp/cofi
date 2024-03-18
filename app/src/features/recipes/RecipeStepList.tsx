@@ -1,4 +1,4 @@
-import { Pressable, ScrollView } from "react-native";
+import { Pressable } from "react-native";
 
 import { RecipeStepTask } from "./RecipeStepTask";
 import { Recipe } from "./types";
@@ -15,14 +15,12 @@ export const RecipeStepList = ({
 	toggleStep,
 }: RecipeStepListProps) => {
 	return (
-		<ScrollView bounces>
-			<Box rowGap="s">
-				{steps.map((step, ix) => (
-					<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
-						<RecipeStepTask step={step} done={ix <= stepDone} />
-					</Pressable>
-				))}
-			</Box>
-		</ScrollView>
+		<Box rowGap="s">
+			{steps.map((step, ix) => (
+				<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
+					<RecipeStepTask step={step} done={ix <= stepDone} />
+				</Pressable>
+			))}
+		</Box>
 	);
 };
