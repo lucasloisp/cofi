@@ -1,7 +1,7 @@
 import { Pressable } from "react-native";
 
 import { RecipeStepTask } from "./RecipeStepTask";
-import { Recipe } from "./types";
+import { Recipe } from "../../services/api";
 import { Box } from "../../ui/atoms/Box";
 
 type RecipeStepListProps = {

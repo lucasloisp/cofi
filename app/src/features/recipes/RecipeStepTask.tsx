@@ -1,4 +1,4 @@
-import { RecipeStep } from "./types";
+import { RecipeStep } from "../../services/api";
 import { formatSeconds } from "../../services/time";
 import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";

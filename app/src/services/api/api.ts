@@ -1,6 +1,8 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Recipe, RecipeHead } from "./types";
 
-import { Recipe, RecipeHead, getRecipe, getRecipes } from "../../services/api";
+const delay = (ms: number) =>
+	new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+const random = (min, max) => Math.round(Math.random() * (max - min) + min);
 
 const MOCK_RECIPES: Recipe[] = [
 	{
@@ -57,22 +59,22 @@ const MOCK_RECIPES: Recipe[] = [
 	},
 ];
 
-export const useRecipes = () => {
-	return useQuery<RecipeHead[]>({
-		queryKey: ["recipes"],
-		queryFn: () => getRecipes(),
-	});
+export const getRecipes = async () => {
+	await delay(random(80, 800));
+	return MOCK_RECIPES.map(({ name, id, author, method, source }) => ({
+		name,
+		id,
+		author,
+		method,
+		source,
+	}));
 };
 
-export const useRecipe = (recipeId: string) => {
-	const client = useQueryClient();
-	return useQuery<Partial<Recipe> & RecipeHead>({
-		queryKey: ["recipes", recipeId],
-		initialData: () => {
-			return client
-				.getQueryData<RecipeHead[]>(["recipes"])
-				?.find((r) => r.id === recipeId);
-		},
-		queryFn: () => getRecipe(recipeId),
-	});
+export const getRecipe = async (recipeId: string) => {
+	await delay(random(800, 1200));
+	const recipe = MOCK_RECIPES.find((r) => r.id === recipeId);
+	if (!recipe) {
+		throw new Error(`Recipe with id ${recipeId} not found`);
+	}
+	return recipe;
 };
