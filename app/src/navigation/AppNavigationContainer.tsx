@@ -18,7 +18,7 @@ const useNavigationTheme = (): NavigationTheme => {
 			colors: {
 				...DefaultNavigationTheme.colors,
 				background: appTheme.colors.mainBackground,
-				primary: appTheme.colors.accent,
+				primary: appTheme.colors.textSecondary,
 				border: appTheme.colors.accentDark,
 				card: appTheme.colors.secondaryBackground,
 				text: appTheme.colors.textSecondary,
