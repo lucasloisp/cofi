@@ -14,7 +14,7 @@ export const Button = ({
 	onPress,
 	children,
 	tracking,
-	textAlign,
+	textAlign = "center",
 }: ButtonProps) => {
 	const trackedOnPress = useClickMetrics(tracking, onPress);
 	return (

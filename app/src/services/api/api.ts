@@ -1,15 +1,20 @@
-import { Recipe, RecipeHead } from "./types";
+import { Recipe } from "./types";
 
 const delay = (ms: number) =>
 	new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
-const random = (min, max) => Math.round(Math.random() * (max - min) + min);
+
+const random = (min: number, max: number) =>
+	Math.round(Math.random() * (max - min) + min);
 
 const MOCK_RECIPES: Recipe[] = [
 	{
 		id: "recipe.1",
 		name: "Smooothy",
 		author: "Adib",
-		source: "https://aeroprecipe.com/recipes/smooothy",
+		source: {
+			name: "AeroPrecipe",
+			url: "https://aeroprecipe.com/recipes/smooothy",
+		},
 		method: "AeroPress",
 		coffeeWeight: 14,
 		coffeeGrind: "Med-fine",
@@ -26,7 +31,10 @@ const MOCK_RECIPES: Recipe[] = [
 		id: "recipe.2",
 		name: "The AeroPress Flat White",
 		author: "@europeancoffeetrip",
-		source: "https://aeroprecipe.com/recipes/aeropress-flat-white",
+		source: {
+			name: "AeroPrecipe",
+			url: "https://aeroprecipe.com/recipes/aeropress-flat-white",
+		},
 		method: "AeroPress",
 		coffeeWeight: 14,
 		coffeeGrind: "Fine",
@@ -43,7 +51,10 @@ const MOCK_RECIPES: Recipe[] = [
 		id: "recipe.3",
 		name: "Ultimate French Press",
 		author: "James Hoffmann",
-		source: "https://www.youtube.com/watch?v=st571DYYTR8",
+		source: {
+			name: "James Hoffmann @ YT",
+			url: "https://www.youtube.com/watch?v=st571DYYTR8",
+		},
 		method: "French Press",
 		coffeeRatio: 30 / 500,
 		coffeeGrind: "Coarse",

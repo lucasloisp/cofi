@@ -20,7 +20,7 @@ const useNavigationTheme = (): NavigationTheme => {
 				background: appTheme.colors.mainBackground,
 				primary: appTheme.colors.accent,
 				border: appTheme.colors.accentDark,
-				card: appTheme.colors.cardPrimaryBackground,
+				card: appTheme.colors.secondaryBackground,
 				text: appTheme.colors.textSecondary,
 			},
 		}),

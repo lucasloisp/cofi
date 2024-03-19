@@ -14,25 +14,25 @@ export const RecipeStepTask = ({
 }: RecipeStepProps) => {
 	return (
 		<Box
+			flexDirection="row"
+			justifyContent="space-between"
 			backgroundColor="cardBackground"
 			borderColor="cardHighlight"
 			borderWidth={1}
-			padding="m"
 			borderRadius={4}
-			flexDirection="row"
-			justifyContent="space-between"
+			padding="m"
 		>
 			<Text
 				variant="body"
-				color="textTertiary"
-				textDecorationLine={done ? "line-through" : undefined}
+				color="secondaryCardText"
+				textDecorationLine={done ? "line-through" : "none"}
 			>
 				{description}
 			</Text>
 			<Text
 				variant="action"
-				color="textTertiary"
-				textDecorationLine={done ? "line-through" : undefined}
+				color="secondaryCardText"
+				textDecorationLine={done ? "line-through" : "none"}
 			>
 				{formatSeconds(time)}
 			</Text>

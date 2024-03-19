@@ -1,14 +1,26 @@
-type CoffeeMethod = "AeroPress" | "Pour Over" | "French Press" | "Espresso";
-type CoffeeGrind = "Coarse" | "Med-coarse" | "Medium" | "Med-fine" | "Fine";
+export type CoffeeMethod =
+	| "AeroPress"
+	| "Pour Over"
+	| "French Press"
+	| "Espresso";
+
+export type CoffeeGrind =
+	| "Coarse"
+	| "Med-coarse"
+	| "Medium"
+	| "Med-fine"
+	| "Fine";
+
 export type RecipeStep = {
 	time: number;
 	description: string;
 };
+
 export type Recipe = {
 	id: string;
 	name: string;
 	author: string;
-	source: string;
+	source: { url: string; name: string };
 	method: CoffeeMethod;
 	coffeeGrind: CoffeeGrind;
 	steps: RecipeStep[];

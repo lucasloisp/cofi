@@ -1,7 +1,7 @@
 import { FlatList, Pressable } from "react-native";
 
-import AeroPressIcon from "../../../assets/icons/aeropress.svg";
 import { useRecipes } from "../../features/recipes";
+import { MethodIcon } from "../../features/recipes/MethodIcon";
 import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";
 import { useAppTheme } from "../../ui/theme";
@@ -26,10 +26,15 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
 					onPress={() => navigation.navigate("Brew", { recipeId: item.id })}
 				>
 					<Box flexDirection="row" alignItems="center" gap="s">
-						<AeroPressIcon height={52} width={52} fill={textPrimary} />
+						<MethodIcon
+							method={item.method}
+							height={52}
+							width={52}
+							fill={textPrimary}
+						/>
 						<Box>
-							<Text variant="emph">{item.name}</Text>
-							<Text variant="light">by {item.author}</Text>
+							<Text variant="action">{item.name}</Text>
+							<Text variant="body">by {item.author}</Text>
 						</Box>
 					</Box>
 				</Pressable>

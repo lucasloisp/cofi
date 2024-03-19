@@ -6,8 +6,26 @@ import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
 
 export const BrewTimer = () => {
-	const [seconds, setSeconds] = useState(0);
 	const [isActive, toggleIsActive] = useReducer((active) => !active, false);
+	const seconds = useStopwatch({ isActive });
+
+	return (
+		<Box flexDirection="row" alignItems="center" justifyContent="space-between">
+			<Text variant="action">{formatSeconds(seconds)}</Text>
+			<Button
+				onPress={toggleIsActive}
+				tracking={["BrewTimerButton", { Action: isActive ? "stop" : "start" }]}
+			>
+				{isActive ? "Stop" : "Start"}
+			</Button>
+		</Box>
+	);
+};
+
+type UseStopwatchOptions = { isActive: boolean };
+
+const useStopwatch = ({ isActive }: UseStopwatchOptions) => {
+	const [seconds, setSeconds] = useState(0);
 
 	useEffect(() => {
 		if (isActive) {
@@ -23,15 +41,5 @@ export const BrewTimer = () => {
 		}
 	}, [isActive]);
 
-	return (
-		<Box flexDirection="row" alignItems="center" justifyContent="space-between">
-			<Text variant="emph">{formatSeconds(seconds)}</Text>
-			<Button
-				onPress={toggleIsActive}
-				tracking={["BrewTimerButton", { Action: isActive ? "stop" : "start" }]}
-			>
-				{isActive ? "Stop" : "Start"}
-			</Button>
-		</Box>
-	);
+	return seconds;
 };

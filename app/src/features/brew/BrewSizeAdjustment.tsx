@@ -7,33 +7,27 @@ type BrewSizeAdjustmentProps = {
 	size: number;
 	setSize: (size: number) => void;
 };
+
 export const BrewSizeAdjustment = ({
 	size,
 	setSize,
 }: BrewSizeAdjustmentProps) => {
 	return (
-		<Box
-			flexDirection="row"
-			alignItems="center"
-			justifyContent="space-between"
-			columnGap="s"
-		>
-			<Box flex={2}>
+		<Box flexDirection="row" alignItems="center" justifyContent="space-between">
+			<Box flex={1}>
 				<Button
 					tracking="BrewSizeDecreaseButton"
-					textAlign="center"
 					onPress={() => setSize(Math.max(size - CUP_SIZE_ML, 0))}
 				>
 					Less
 				</Button>
 			</Box>
-			<Box flex={1}>
-				<Text textAlign="center">{size} ml</Text>
+			<Box alignItems="center" marginHorizontal="m">
+				<Text variant="body">{size} ml</Text>
 			</Box>
-			<Box flex={2}>
+			<Box flex={1}>
 				<Button
 					tracking="BrewSizeIncreaseButton"
-					textAlign="center"
 					onPress={() => setSize(size + CUP_SIZE_ML)}
 				>
 					More

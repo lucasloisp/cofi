@@ -9,10 +9,7 @@ type RecipeCharacteristicProps = {
 	label: string;
 };
 
-export const RecipeCharacteristic = ({
-	Icon,
-	label,
-}: RecipeCharacteristicProps) => {
+export const CalloutCell = ({ Icon, label }: RecipeCharacteristicProps) => {
 	const { colors } = useAppTheme();
 
 	return (
@@ -20,13 +17,16 @@ export const RecipeCharacteristic = ({
 			flex={1}
 			alignItems="center"
 			justifyContent="space-between"
-			padding="m"
-			borderRadius={8}
-			borderColor="accent"
+			backgroundColor="secondaryCardBackground"
+			borderColor="secondaryCardHighlight"
 			borderWidth={2}
+			borderRadius={8}
+			padding="m"
 		>
-			<Icon width={48} height={48} fill={colors.textPrimary} />
-			<Text variant="action">{label}</Text>
+			<Icon width={48} height={48} fill={colors.secondaryCardHighlight} />
+			<Text variant="action" color="secondaryCardHighlight">
+				{label}
+			</Text>
 		</Box>
 	);
 };

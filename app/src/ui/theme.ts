@@ -1,17 +1,29 @@
 import { createTheme, useTheme } from "@shopify/restyle";
 
 // https://www.happyhues.co/palettes/10
+const palette = {
+	extraDarkGreen: "#001E1D",
+	darkGreen: "#0F3433",
+	green: "#004643",
+	lightGreen: "#ABD1C6",
+	orange: "#F9BC60",
+	darkOrange: "#F6A01D",
+	cream: "#E8E4E6",
+};
+
 const theme = createTheme({
 	colors: {
-		mainBackground: "#004643",
-		cardPrimaryBackground: "#ABD1C6",
-		textPrimary: "#ABD1C6",
-		textSecondary: "#001E1D",
-		textTertiary: "#0F3433",
-		accent: "#F9BC60",
-		accentDark: "#F6A01D",
-		cardBackground: "#E8E4E6",
-		cardHighlight: "#001E1D",
+		mainBackground: palette.green,
+		secondaryBackground: palette.lightGreen,
+		textPrimary: palette.lightGreen,
+		textSecondary: palette.extraDarkGreen,
+		accent: palette.orange,
+		accentDark: palette.darkOrange,
+		cardBackground: palette.cream,
+		cardHighlight: palette.extraDarkGreen,
+		secondaryCardBackground: palette.green,
+		secondaryCardHighlight: palette.lightGreen,
+		secondaryCardText: palette.darkGreen,
 	},
 	spacing: {
 		xs: 4,
@@ -21,29 +33,22 @@ const theme = createTheme({
 		xl: 40,
 	},
 	textVariants: {
-		header: {
-			fontFamily: "Quicksand_700Bold",
-			fontSize: 34,
-		},
-		subheader: {
-			fontFamily: "Quicksand_500Medium",
-			fontSize: 30,
-		},
-		emph: {
-			fontFamily: "Quicksand_600SemiBold",
-		},
-		light: {
-			fontFamily: "Quicksand_300Light",
+		defaults: {
+			fontFamily: "QuicksandRegular",
+			color: "textPrimary",
+			fontSize: 16,
 		},
 		body: {},
 		action: {
-			fontFamily: "Quicksand_600SemiBold",
-			fontSize: 16,
+			fontFamily: "QuicksandSemiBold",
 		},
-		defaults: {
-			fontFamily: "Quicksand_400Regular",
-			color: "textPrimary",
-			fontSize: 16,
+		header: {
+			fontFamily: "QuicksandBold",
+			fontSize: 34,
+		},
+		subheader: {
+			fontFamily: "QuicksandBold",
+			fontSize: 28,
 		},
 	},
 });

@@ -12,7 +12,7 @@ export const Router = () => {
 			<AppStack.Screen
 				name="Home"
 				component={HomeScreen}
-				options={{ title: "Cofi" }}
+				options={{ title: "Recipes" }}
 			/>
 			<AppStack.Screen
 				name="Brew"
