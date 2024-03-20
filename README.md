@@ -11,7 +11,7 @@ Cofi is built on top of [Expo](https://expo.dev/) and [React Native](https://rea
 
 ### Architecture
 
-The architecture of this app is inspired by Zalecki's [Elegant Frontend Architecture](https://michalzalecki.com/elegant-frontend-architecture/) and broadly aligns with my preferred way to structure big-ish React Native codebases, with [Colocation](https://kentcdodds.com/blog/colocation) as a guiding principle.
+The architecture of this app is inspired by Zalecki's [Elegant Frontend Architecture](https://michalzalecki.com/elegant-frontend-architecture/) and aligns with my preferred way to structure big-ish React Native codebases, with [Colocation](https://kentcdodds.com/blog/colocation) as a guiding principle.
 
 Through `services/` we can create powerful abstractions that mean our app is much more flexible when it comes to changes in dependencies and that features can truly be abstracted away from the details of a particular library or SDK.
 Eventually, this can also be used to keep platform-specific logic at bay too, by encapsulating all details specific to a particular OS inside them.
@@ -33,5 +33,5 @@ This app is built on a couple of super powerful resources:
 - [The Noun Project](https://thenounproject.com/) is an icons repository. The icons throughout Cofi came from there.
   - Coffee by Iconnic from <a href="https://thenounproject.com/browse/icons/term/coffee/" target="_blank" title="Coffee Icons">Noun Project</a> (CC BY 3.0)
   - scoop with coffee by Juraj Sedlák from <a href="https://thenounproject.com/browse/icons/term/scoop-with-coffee/" target="_blank" title="scoop with coffee Icons">Noun Project</a> (CC BY 3.0)
-  - French Press by Joshua Lepley from <a href="https://thenounproject.com/browse/icons/term/french-press/" target="_blank" title="French Press Icons">Noun Project</a> (CC BY 3.0)o
+  - French Press by Joshua Lepley from <a href="https://thenounproject.com/browse/icons/term/french-press/" target="_blank" title="French Press Icons">Noun Project</a> (CC BY 3.0)
   - Aeropress by Joshua Lepley from <a href="https://thenounproject.com/browse/icons/term/aeropress/" target="_blank" title="Aeropress Icons">Noun Project</a> (CC BY 3.0)
