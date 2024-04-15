@@ -1,0 +1,8 @@
+{
+	"en": {
+		"recipesScreen": {
+			"title": "Recipes",
+			"recipeAuthoredBy": "by %{author}"
+		}
+	}
+}
