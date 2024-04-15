@@ -3,6 +3,11 @@
 		"recipesScreen": {
 			"title": "Recipes",
 			"recipeAuthoredBy": "by %{author}"
+		},
+		"brewScreen": {
+			"loadingError": "The recipe details could not be loaded",
+			"recipeAuthoredBy": "by %{author}",
+			"linkToSource": "Source: %{name}"
 		}
 	}
 }

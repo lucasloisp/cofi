@@ -11,6 +11,7 @@ import {
 } from "../../features/brew";
 import { useRecipe, RecipeStepList } from "../../features/recipes";
 import { MethodIcon } from "../../features/recipes/MethodIcon";
+import { t } from "../../services/strings";
 import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
@@ -27,7 +28,7 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 	const insets = useSafeAreaInsets();
 
 	if (isError) {
-		return <Text variant="body">The recipe details could not be loaded</Text>;
+		return <Text variant="body">{t("brewScreen.loadingError")}</Text>;
 	}
 
 	if (!recipe) {
@@ -48,14 +49,17 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 			<Box paddingHorizontal="m" paddingBottom="m" rowGap="m" height="100%">
 				<Text variant="header">
 					{recipe.name}
-					<Text variant="body"> by {recipe.author}</Text>
+					<Text variant="body">
+						{" "}
+						{t("brewScreen.recipeAuthoredBy", { author: recipe.author })}
+					</Text>
 				</Text>
 				<Button
 					onPress={() => Linking.openURL(recipe.source.url)}
 					tracking="RecipeSourceButton"
 					textAlign="left"
 				>
-					Source: {recipe.source.name}
+					{t("brewScreen.linkToSource", { name: recipe.source.name })}
 				</Button>
 				<Box flexDirection="row" columnGap="s" paddingVertical="s">
 					<CalloutCell
