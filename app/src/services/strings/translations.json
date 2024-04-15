@@ -7,7 +7,8 @@
 		"brewScreen": {
 			"loadingError": "The recipe details could not be loaded",
 			"recipeAuthoredBy": "by %{author}",
-			"linkToSource": "Source: %{name}"
+			"linkToSource": "Source: %{name}",
+			"stepsSection": "Steps"
 		},
 		"brewing": {
 			"decreaseSizeButton": "Less",
