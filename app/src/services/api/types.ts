@@ -5,11 +5,11 @@ export type CoffeeMethod =
 	| "Espresso";
 
 export type CoffeeGrind =
-	| "Coarse"
-	| "Med-coarse"
-	| "Medium"
-	| "Med-fine"
-	| "Fine";
+	| "coarse"
+	| "med_coarse"
+	| "medium"
+	| "med_fine"
+	| "fine";
 
 export type RecipeStep = {
 	time: number;

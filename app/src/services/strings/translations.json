@@ -20,6 +20,13 @@
 			"drinkSizeLabel": "%{size} ml",
 			"timerStartButton": "Start",
 			"timerStopButton": "Stop"
+		},
+		"grindSize": {
+			"coarse": "Coarse",
+			"med_coarse": "Med. Coarse",
+			"medium": "Medium",
+			"med_fine": "Med. Fine",
+			"fine": "Fine"
 		}
 	}
 }

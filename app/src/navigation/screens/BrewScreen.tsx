@@ -95,7 +95,9 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 					<Pressable onPress={onPressCoffeeGrind}>
 						<CalloutCell
 							Icon={CoffeeScoopIcon}
-							label={recipe.coffeeGrind ?? "-"}
+							label={t(`grindSize.${recipe.coffeeGrind}`, {
+								defaultValue: "-",
+							})}
 						/>
 					</Pressable>
 				</Box>

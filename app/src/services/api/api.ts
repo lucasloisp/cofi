@@ -17,7 +17,7 @@ const MOCK_RECIPES: Recipe[] = [
 		},
 		method: "AeroPress",
 		coffeeWeight: 14,
-		coffeeGrind: "Med-fine",
+		coffeeGrind: "med_fine",
 		steps: [
 			{ time: 0, description: "Rinse two filters" },
 			{ time: 0, description: "Bloom 40g of water" },
@@ -37,7 +37,7 @@ const MOCK_RECIPES: Recipe[] = [
 		},
 		method: "AeroPress",
 		coffeeWeight: 14,
-		coffeeGrind: "Fine",
+		coffeeGrind: "fine",
 		steps: [
 			{ time: 0, description: "Add 70g of water." },
 			{ time: 0, description: "Stir for 20 seconds" },
@@ -57,7 +57,7 @@ const MOCK_RECIPES: Recipe[] = [
 		},
 		method: "French Press",
 		coffeeRatio: 30 / 500,
-		coffeeGrind: "Med-coarse",
+		coffeeGrind: "med_coarse",
 		steps: [
 			{ time: 0, description: "Don't be in a Hurry" },
 			{ time: 0, description: "Add 500ml water" },

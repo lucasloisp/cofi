@@ -2,14 +2,14 @@ import { CoffeeGrind } from "./api";
 
 export const getGrindSettings = (grind: CoffeeGrind) => {
 	switch (grind) {
-		case "Coarse":
+		case "coarse":
 			return 20;
-		case "Med-coarse":
+		case "med_coarse":
 			return 18;
-		case "Medium":
-		case "Med-fine":
+		case "medium":
+		case "med_fine":
 			return 13;
-		case "Fine":
+		case "fine":
 			return 8;
 	}
 };
