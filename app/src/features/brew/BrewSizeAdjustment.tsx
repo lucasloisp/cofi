@@ -1,4 +1,5 @@
 import { CUP_SIZE_ML } from "./constants";
+import { t } from "../../services/strings";
 import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
@@ -19,18 +20,18 @@ export const BrewSizeAdjustment = ({
 					tracking="BrewSizeDecreaseButton"
 					onPress={() => setSize(Math.max(size - CUP_SIZE_ML, 0))}
 				>
-					Less
+					{t("brewing.decreaseSizeButton")}
 				</Button>
 			</Box>
 			<Box alignItems="center" marginHorizontal="m">
-				<Text variant="body">{size} ml</Text>
+				<Text variant="body">{t("brewing.drinkSizeLabel", { size })}</Text>
 			</Box>
 			<Box flex={1}>
 				<Button
 					tracking="BrewSizeIncreaseButton"
 					onPress={() => setSize(size + CUP_SIZE_ML)}
 				>
-					More
+					{t("brewing.increaseSizeButton")}
 				</Button>
 			</Box>
 		</Box>

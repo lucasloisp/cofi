@@ -1,0 +1,20 @@
+{
+	"en": {
+		"recipesScreen": {
+			"title": "Recipes",
+			"recipeAuthoredBy": "by %{author}"
+		},
+		"brewScreen": {
+			"loadingError": "The recipe details could not be loaded",
+			"recipeAuthoredBy": "by %{author}",
+			"linkToSource": "Source: %{name}"
+		},
+		"brewing": {
+			"decreaseSizeButton": "Less",
+			"increaseSizeButton": "Less",
+			"drinkSizeLabel": "%{size} ml",
+			"timerStartButton": "Start",
+			"timerStopButton": "Stop"
+		}
+	}
+}

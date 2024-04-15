@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { BrewScreen } from "./screens/BrewScreen";
 import { HomeScreen } from "./screens/HomeScreen";
 import { AppStackParamList } from "./types";
+import { t } from "../services/strings";
 
 const AppStack = createNativeStackNavigator<AppStackParamList>();
 
@@ -12,7 +13,7 @@ export const Router = () => {
 			<AppStack.Screen
 				name="Home"
 				component={HomeScreen}
-				options={{ title: "Recipes" }}
+				options={{ title: t("recipesScreen.title") }}
 			/>
 			<AppStack.Screen
 				name="Brew"
