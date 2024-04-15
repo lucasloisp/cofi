@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 
+import { t } from "../../services/strings";
 import { formatSeconds } from "../../services/time";
 import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
@@ -16,7 +17,9 @@ export const BrewTimer = () => {
 				onPress={toggleIsActive}
 				tracking={["BrewTimerButton", { Action: isActive ? "stop" : "start" }]}
 			>
-				{isActive ? "Stop" : "Start"}
+				{isActive
+					? t("brewing.timerStopButton")
+					: t("brewing.timerStartButton")}
 			</Button>
 		</Box>
 	);
