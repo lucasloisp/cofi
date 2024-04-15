@@ -1,6 +1,13 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { skipToken, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { Recipe, RecipeHead, getRecipe, getRecipes } from "../../services/api";
+import {
+	CoffeeGrind,
+	Recipe,
+	RecipeHead,
+	getRecipe,
+	getRecipes,
+} from "../../services/api";
+import { getGrindSettings } from "../../services/preferences";
 
 const recipeKeys = {
 	all: ["recipes"] as const,
@@ -23,5 +30,16 @@ export const useRecipe = (recipeId: string) => {
 				.getQueryData<RecipeHead[]>(recipeKeys.all)
 				?.find((r) => r.id === recipeId),
 		queryFn: () => getRecipe(recipeId),
+	});
+};
+
+const settingsKeys = {
+	all: ["settings"] as const,
+};
+
+export const useGrindSettings = (coffeeGrind: CoffeeGrind | undefined) => {
+	return useQuery({
+		queryKey: settingsKeys.all,
+		queryFn: coffeeGrind ? () => getGrindSettings(coffeeGrind) : skipToken,
 	});
 };

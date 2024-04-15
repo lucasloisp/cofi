@@ -57,7 +57,7 @@ const MOCK_RECIPES: Recipe[] = [
 		},
 		method: "French Press",
 		coffeeRatio: 30 / 500,
-		coffeeGrind: "Coarse",
+		coffeeGrind: "Med-coarse",
 		steps: [
 			{ time: 0, description: "Don't be in a Hurry" },
 			{ time: 0, description: "Add 500ml water" },

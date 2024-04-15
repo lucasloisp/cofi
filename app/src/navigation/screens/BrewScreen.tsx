@@ -1,5 +1,11 @@
 import { useReducer, useState } from "react";
-import { ActivityIndicator, Linking, ScrollView } from "react-native";
+import {
+	ActivityIndicator,
+	Alert,
+	Linking,
+	Pressable,
+	ScrollView,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
@@ -9,7 +15,11 @@ import {
 	BrewTimer,
 	CUP_SIZE_ML,
 } from "../../features/brew";
-import { useRecipe, RecipeStepList } from "../../features/recipes";
+import {
+	useRecipe,
+	RecipeStepList,
+	useGrindSettings,
+} from "../../features/recipes";
 import { MethodIcon } from "../../features/recipes/MethodIcon";
 import { t } from "../../services/strings";
 import { Box } from "../../ui/atoms/Box";
@@ -26,6 +36,19 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 		-1,
 	);
 	const insets = useSafeAreaInsets();
+	const { data: grindSetting } = useGrindSettings(recipe?.coffeeGrind);
+	const onPressCoffeeGrind =
+		grindSetting &&
+		recipe?.coffeeGrind &&
+		(() => {
+			Alert.alert(
+				t("brewScreen.grinderSettings.title"),
+				t("brewScreen.grinderSettings.message", {
+					grind: recipe.coffeeGrind,
+					setting: grindSetting,
+				}),
+			);
+		});
 
 	if (isError) {
 		return <Text variant="body">{t("brewScreen.loadingError")}</Text>;
@@ -69,10 +92,12 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 						Icon={CoffeeBeansIcon}
 						label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
 					/>
-					<CalloutCell
-						Icon={CoffeeScoopIcon}
-						label={recipe.coffeeGrind ?? "-"}
-					/>
+					<Pressable onPress={onPressCoffeeGrind}>
+						<CalloutCell
+							Icon={CoffeeScoopIcon}
+							label={recipe.coffeeGrind ?? "-"}
+						/>
+					</Pressable>
 				</Box>
 				{recipeIsScalable && (
 					<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />

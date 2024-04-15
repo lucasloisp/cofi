@@ -8,7 +8,11 @@
 			"loadingError": "The recipe details could not be loaded",
 			"recipeAuthoredBy": "by %{author}",
 			"linkToSource": "Source: %{name}",
-			"stepsSection": "Steps"
+			"stepsSection": "Steps",
+			"grinderSettings": {
+				"title": "Grinder Settings",
+				"message": "A %{grind} grind on your grinder has settings: %{setting}"
+			}
 		},
 		"brewing": {
 			"decreaseSizeButton": "Less",
