@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"main": "node_modules/expo/AppEntry.js",
 	"scripts": {
-		"start": "APP_VARIANT=development expo start",
+		"start": "expo start",
 		"android": "expo run:android",
 		"ios": "expo run:ios",
 		"lint": "npm run lint:ts && npm run lint:js",
@@ -24,7 +24,6 @@
 		"@tanstack/react-query": "^5.25.0",
 		"expo": "~50.0.11",
 		"expo-crypto": "~12.8.1",
-		"expo-dev-client": "~3.3.9",
 		"expo-font": "~11.10.3",
 		"expo-localization": "~14.8.3",
 		"expo-status-bar": "~1.11.1",
