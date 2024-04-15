@@ -13,10 +13,7 @@ export const BrewTimer = () => {
 	return (
 		<Box flexDirection="row" alignItems="center" justifyContent="space-between">
 			<Text variant="action">{formatSeconds(seconds)}</Text>
-			<Button
-				onPress={toggleIsActive}
-				tracking={["BrewTimerButton", { Action: isActive ? "stop" : "start" }]}
-			>
+			<Button onPress={toggleIsActive}>
 				{isActive
 					? t("brewing.timerStopButton")
 					: t("brewing.timerStartButton")}

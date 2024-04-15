@@ -56,7 +56,6 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 				</Text>
 				<Button
 					onPress={() => Linking.openURL(recipe.source.url)}
-					tracking="RecipeSourceButton"
 					textAlign="left"
 				>
 					{t("brewScreen.linkToSource", { name: recipe.source.name })}

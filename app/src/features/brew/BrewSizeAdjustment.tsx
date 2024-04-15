@@ -16,10 +16,7 @@ export const BrewSizeAdjustment = ({
 	return (
 		<Box flexDirection="row" alignItems="center" justifyContent="space-between">
 			<Box flex={1}>
-				<Button
-					tracking="BrewSizeDecreaseButton"
-					onPress={() => setSize(Math.max(size - CUP_SIZE_ML, 0))}
-				>
+				<Button onPress={() => setSize(Math.max(size - CUP_SIZE_ML, 0))}>
 					{t("brewing.decreaseSizeButton")}
 				</Button>
 			</Box>
@@ -27,10 +24,7 @@ export const BrewSizeAdjustment = ({
 				<Text variant="body">{t("brewing.drinkSizeLabel", { size })}</Text>
 			</Box>
 			<Box flex={1}>
-				<Button
-					tracking="BrewSizeIncreaseButton"
-					onPress={() => setSize(size + CUP_SIZE_ML)}
-				>
+				<Button onPress={() => setSize(size + CUP_SIZE_ML)}>
 					{t("brewing.increaseSizeButton")}
 				</Button>
 			</Box>

@@ -3,22 +3,18 @@ import { Pressable } from "react-native";
 
 import { Box } from "./Box";
 import { Text, type TextProps } from "./Text";
-import { TrackingProps, useClickMetrics } from "../../services/analytics";
 
 type ButtonProps = {
 	onPress: () => void;
-} & Pick<TextProps, "children" | "textAlign"> &
-	TrackingProps;
+} & Pick<TextProps, "children" | "textAlign">;
 
 export const Button = ({
 	onPress,
 	children,
-	tracking,
 	textAlign = "center",
 }: ButtonProps) => {
-	const trackedOnPress = useClickMetrics(tracking, onPress);
 	return (
-		<Pressable onPress={trackedOnPress}>
+		<Pressable onPress={onPress}>
 			{({ pressed }) => (
 				<Box
 					backgroundColor={pressed ? "accentDark" : "accent"}
