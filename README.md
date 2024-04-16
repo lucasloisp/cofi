@@ -9,6 +9,12 @@ I built Cofi because I wanted some reminders on what the right steps were to get
 
 Cofi is built on top of [Expo](https://expo.dev/) and [React Native](https://reactnative.dev/) and relies on some popular libraries for its core: [React Navigation](https://reactnavigation.org/), [Tanstack Query](https://tanstack.com/query/) and [Shopify's Restyle](https://shopify.github.io/restyle/).
 
+<p float="left">
+  <img src="./demo/recipes.png" width="200" />
+  <img src="./demo/recipe.png" width="200" />
+  <img src="./demo/recipe_adjust.png" width="200" />
+</p>
+
 ### Architecture
 
 The architecture of this app is inspired by Zalecki's [Elegant Frontend Architecture](https://michalzalecki.com/elegant-frontend-architecture/) and aligns with my preferred way to structure big-ish React Native codebases, with [Colocation](https://kentcdodds.com/blog/colocation) as a guiding principle.
@@ -17,13 +23,6 @@ Through `services/` we can create powerful abstractions that mean our app is muc
 Eventually, this can also be used to keep platform-specific logic at bay too, by encapsulating all details specific to a particular OS inside them.
 
 The `features/` folder allows building hooks and components in a way that makes them easily shareable while still keeping coupling low by grouping them.
-
-### Showcase
-
-Code-wise, Cofi seeks to showcase:
-
-- Theme & Styling via Restyle.
-- Analytics via segment, in a service agnostic way, and powered by component naming so analytics are easy to add to any flow in the app.
 
 ## Credit
 
