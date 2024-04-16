@@ -20,7 +20,7 @@
 		},
 		"brewing": {
 			"decreaseSizeButton": "Less",
-			"increaseSizeButton": "Less",
+			"increaseSizeButton": "More",
 			"drinkSizeLabel": "%{size} ml",
 			"timerStartButton": "Start",
 			"timerStopButton": "Stop"
