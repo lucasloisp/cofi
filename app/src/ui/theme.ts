@@ -51,6 +51,22 @@ const theme = createTheme({
 			fontSize: 28,
 		},
 	},
+	textInputVariants: {
+		defaults: {
+			backgroundColor: "secondaryBackground",
+			padding: "s",
+			borderRadius: 4,
+			borderWidth: 1,
+			fontSize: 16,
+			borderColor: "cardHighlight",
+			color: "textSecondary",
+			fontWeight: "700",
+		},
+		base: {},
+		focused: {
+			borderColor: "accent",
+		},
+	},
 });
 
 export type Theme = typeof theme;

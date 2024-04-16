@@ -1,4 +1,9 @@
-import { skipToken, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+	skipToken,
+	useMutation,
+	useQuery,
+	useQueryClient,
+} from "@tanstack/react-query";
 
 import {
 	CoffeeGrind,
@@ -7,7 +12,7 @@ import {
 	getRecipe,
 	getRecipes,
 } from "../../services/api";
-import { getGrindSettings } from "../../services/preferences";
+import { getGrindSettings, setGrindSettings } from "../../services/preferences";
 
 const recipeKeys = {
 	all: ["recipes"] as const,
@@ -34,12 +39,32 @@ export const useRecipe = (recipeId: string) => {
 };
 
 const settingsKeys = {
-	all: ["settings"] as const,
+	grind: (size: CoffeeGrind) => ["settings", "grind", { size }] as const,
 };
 
 export const useGrindSettings = (coffeeGrind: CoffeeGrind | undefined) => {
 	return useQuery({
-		queryKey: settingsKeys.all,
+		queryKey: settingsKeys.grind(coffeeGrind!),
 		queryFn: coffeeGrind ? () => getGrindSettings(coffeeGrind) : skipToken,
+	});
+};
+
+export const useGrindSettingsMutation = (grind: CoffeeGrind) => {
+	const client = useQueryClient();
+	const queryKey = settingsKeys.grind(grind);
+	return useMutation({
+		mutationFn: (setting: number) => setGrindSettings(grind, setting),
+		onMutate: async (setting: number) => {
+			await client.cancelQueries({ queryKey });
+			const previousSetting = client.getQueryData(queryKey);
+			client.setQueryData(queryKey, () => setting);
+			return { previousSetting };
+		},
+		onError: (_err, _newSetting, context) => {
+			client.setQueryData(queryKey, context?.previousSetting);
+		},
+		onSettled: () => {
+			client.invalidateQueries({ queryKey });
+		},
 	});
 };

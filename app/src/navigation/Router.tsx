@@ -1,8 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Button } from "react-native";
 
 import { BrewScreen } from "./screens/BrewScreen";
 import { HomeScreen } from "./screens/HomeScreen";
-import { AppStackParamList } from "./types";
+import { SettingsScreen } from "./screens/SettingsScreen";
+import { AppStackParamList, HomeScreenProps } from "./types";
 import { t } from "../services/strings";
 
 const AppStack = createNativeStackNavigator<AppStackParamList>();
@@ -13,12 +15,26 @@ export const Router = () => {
 			<AppStack.Screen
 				name="Home"
 				component={HomeScreen}
-				options={{ title: t("recipesScreen.title") }}
+				options={({ navigation }: HomeScreenProps) => ({
+					title: t("recipesScreen.title"),
+					headerRight: ({ tintColor }) => (
+						<Button
+							title="Settings"
+							color={tintColor}
+							onPress={() => navigation.navigate("Settings")}
+						/>
+					),
+				})}
 			/>
 			<AppStack.Screen
 				name="Brew"
 				component={BrewScreen}
 				options={{ title: "" }}
+			/>
+			<AppStack.Screen
+				name="Settings"
+				component={SettingsScreen}
+				options={{ title: t("settingsScreen.title") }}
 			/>
 		</AppStack.Navigator>
 	);

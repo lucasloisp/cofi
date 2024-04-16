@@ -14,6 +14,10 @@
 				"message": "A %{grind} grind on your grinder has settings: %{setting}"
 			}
 		},
+		"settingsScreen": {
+			"title": "Settings",
+			"grinderSection": "Grinder"
+		},
 		"brewing": {
 			"decreaseSizeButton": "Less",
 			"increaseSizeButton": "Less",

@@ -44,7 +44,7 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 			Alert.alert(
 				t("brewScreen.grinderSettings.title"),
 				t("brewScreen.grinderSettings.message", {
-					grind: recipe.coffeeGrind,
+					grind: t(`grindSize.${recipe.coffeeGrind}`),
 					setting: grindSetting,
 				}),
 			);
