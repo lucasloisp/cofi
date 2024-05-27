@@ -29,13 +29,15 @@ export const RecipeStepTask = ({
 			>
 				{description}
 			</Text>
-			<Text
-				variant="action"
-				color="secondaryCardText"
-				textDecorationLine={done ? "line-through" : "none"}
-			>
-				{formatSeconds(time)}
-			</Text>
+			{time !== undefined && (
+				<Text
+					variant="action"
+					color="secondaryCardText"
+					textDecorationLine={done ? "line-through" : "none"}
+				>
+					{formatSeconds(time)}
+				</Text>
+			)}
 		</Box>
 	);
 };

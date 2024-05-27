@@ -19,7 +19,7 @@ const MOCK_RECIPES: Recipe[] = [
 		coffeeWeight: 14,
 		coffeeGrind: "med_fine",
 		steps: [
-			{ time: 0, description: "Rinse two filters" },
+			{ description: "Rinse two filters" },
 			{ time: 0, description: "Bloom 40g of water" },
 			{ time: 30, description: "Add 180g water" },
 			{ time: 90, description: "Swirl" },
@@ -59,7 +59,7 @@ const MOCK_RECIPES: Recipe[] = [
 		coffeeRatio: 30 / 500,
 		coffeeGrind: "med_coarse",
 		steps: [
-			{ time: 0, description: "Don't be in a Hurry" },
+			{ description: "Don't be in a Hurry" },
 			{ time: 0, description: "Add 500ml water" },
 			{ time: 60 * 4, description: "Stir the crust" },
 			{ time: 60 * 4, description: "Scoop off the foam" },

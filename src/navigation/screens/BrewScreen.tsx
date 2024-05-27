@@ -105,7 +105,6 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 					<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />
 				)}
 				<BrewTimer />
-				<Text variant="subheader">{t("brewScreen.stepsSection")}</Text>
 				{recipe.steps ? (
 					<RecipeStepList
 						steps={recipe.steps}
