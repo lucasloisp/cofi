@@ -5,6 +5,8 @@ import { formatSeconds } from "../../services/time";
 
 const timerSecondsAtom = atom(0);
 
+export const timerElapsedAtom = atom((get) => get(timerSecondsAtom));
+
 export const timestampAtom = atom((get) =>
 	formatSeconds(get(timerSecondsAtom)),
 );

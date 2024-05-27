@@ -1,17 +1,25 @@
+import { useAtom } from "jotai";
+
 import { RecipeStep } from "../../services/api";
 import { formatSeconds } from "../../services/time";
 import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";
+import { timerElapsedAtom } from "../brew/timerAtom";
 
 type RecipeStepProps = {
 	step: RecipeStep;
 	done: boolean;
+	previousDone: boolean;
 };
 
 export const RecipeStepTask = ({
 	step: { time, description },
 	done,
+	previousDone,
 }: RecipeStepProps) => {
+	const [timeElapsed] = useAtom(timerElapsedAtom);
+	const isTaskTimerVisible = time !== undefined && !done && previousDone;
+	const timeUntilTask = Math.max((time ?? timeElapsed) - timeElapsed, 0);
 	return (
 		<Box
 			flexDirection="row"
@@ -29,13 +37,13 @@ export const RecipeStepTask = ({
 			>
 				{description}
 			</Text>
-			{time !== undefined && (
+			{isTaskTimerVisible && (
 				<Text
 					variant="action"
 					color="secondaryCardText"
 					textDecorationLine={done ? "line-through" : "none"}
 				>
-					{formatSeconds(time)}
+					In {formatSeconds(timeUntilTask)}
 				</Text>
 			)}
 		</Box>

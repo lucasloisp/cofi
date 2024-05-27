@@ -24,7 +24,7 @@ const MOCK_RECIPES: Recipe[] = [
 			{ time: 30, description: "Add 180g water" },
 			{ time: 90, description: "Swirl" },
 			{ time: 110, description: "Press for 20 seconds" },
-			{ time: 130, description: "Enjoy!" },
+			{ description: "Enjoy!" },
 		],
 	},
 	{
