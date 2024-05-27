@@ -1,3 +1,4 @@
+import { HeaderBackButton } from "@react-navigation/elements";
 import { useReducer, useState } from "react";
 import {
 	ActivityIndicator,
@@ -26,9 +27,11 @@ import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
 import { CalloutCell } from "../../ui/molecules/CalloutCell";
+import { useAppTheme } from "../../ui/theme";
 import { BrewScreenProps } from "../types";
 
-export const BrewScreen = ({ route }: BrewScreenProps) => {
+export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
+	const { colors } = useAppTheme();
 	const { data: recipe, isError } = useRecipe(route.params.recipeId);
 	const [drinkSize, setDrinkSize] = useState(CUP_SIZE_ML);
 	const [stepDone, toggleStep] = useReducer(
@@ -68,15 +71,24 @@ export const BrewScreen = ({ route }: BrewScreenProps) => {
 		: recipe.coffeeWeight;
 
 	return (
-		<ScrollView contentInset={{ bottom: insets.bottom }}>
-			<Box paddingHorizontal="m" paddingBottom="m" rowGap="m" height="100%">
-				<Text variant="header">
-					{recipe.name}
-					<Text variant="body">
-						{" "}
-						{t("brewScreen.recipeAuthoredBy", { author: recipe.author })}
+		<ScrollView contentInset={insets}>
+			<Box flexDirection="row" alignItems="flex-start">
+				<HeaderBackButton
+					labelVisible={false}
+					tintColor={colors.textPrimary}
+					onPress={() => navigation.goBack()}
+				/>
+				<Box flex={1}>
+					<Text variant="header">
+						{recipe.name}
+						<Text variant="body">
+							{" "}
+							{t("brewScreen.recipeAuthoredBy", { author: recipe.author })}
+						</Text>
 					</Text>
-				</Text>
+				</Box>
+			</Box>
+			<Box padding="m" rowGap="m" height="100%">
 				<Button
 					onPress={() => Linking.openURL(recipe.source.url)}
 					textAlign="left"
