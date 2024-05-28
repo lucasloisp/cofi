@@ -11,7 +11,7 @@ export const setGrindSettings = (grind: CoffeeGrind, setting: number) => {
 export const getGrindSettings = async (grind: CoffeeGrind) => {
 	const setting = await AsyncStorage.getItem(`settings.grinder.${grind}`);
 	if (setting) {
-		return JSON.parse(setting);
+		return JSON.parse(setting) as number;
 	}
 	switch (grind) {
 		case "coarse":

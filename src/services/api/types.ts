@@ -12,7 +12,7 @@ export type CoffeeGrind =
 	| "fine";
 
 export type RecipeStep = {
-	time: number;
+	time?: number;
 	description: string;
 };
 

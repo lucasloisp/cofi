@@ -18,7 +18,11 @@ export const RecipeStepList = ({
 		<Box rowGap="s">
 			{steps.map((step, ix) => (
 				<Pressable onPress={() => toggleStep(ix)} key={`recipe-step-${ix}`}>
-					<RecipeStepTask step={step} done={ix <= stepDone} />
+					<RecipeStepTask
+						step={step}
+						done={ix <= stepDone}
+						previousDone={ix - 1 <= stepDone}
+					/>
 				</Pressable>
 			))}
 		</Box>

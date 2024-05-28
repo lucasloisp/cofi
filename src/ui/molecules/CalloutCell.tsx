@@ -3,30 +3,40 @@ import type { SvgProps } from "react-native-svg";
 import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";
 import { useAppTheme } from "../../ui/theme";
+import { Pressable } from "react-native";
+import { useReducer } from "react";
 
 type RecipeCharacteristicProps = {
 	Icon: React.ComponentType<SvgProps>;
 	label: string;
+	secondaryLabel?: string;
 };
 
-export const CalloutCell = ({ Icon, label }: RecipeCharacteristicProps) => {
+export const CalloutCell = ({
+	Icon,
+	label,
+	secondaryLabel = "",
+}: RecipeCharacteristicProps) => {
 	const { colors } = useAppTheme();
+	const [isUp, flip] = useReducer((side: boolean) => !side, true);
+	const labelToShow = isUp ? label : secondaryLabel;
 
 	return (
-		<Box
-			flex={1}
-			alignItems="center"
-			justifyContent="space-between"
-			backgroundColor="secondaryCardBackground"
-			borderColor="secondaryCardHighlight"
-			borderWidth={2}
-			borderRadius={8}
-			padding="m"
-		>
-			<Icon width={48} height={48} fill={colors.secondaryCardHighlight} />
-			<Text variant="action" color="secondaryCardHighlight">
-				{label}
-			</Text>
-		</Box>
+		<Pressable disabled={!secondaryLabel} onPress={flip} style={{ flex: 1 }}>
+			<Box
+				alignItems="center"
+				justifyContent="space-between"
+				backgroundColor="secondaryCardBackground"
+				borderColor="secondaryCardHighlight"
+				borderWidth={2}
+				borderRadius={8}
+				padding="m"
+			>
+				<Icon width={48} height={48} fill={colors.secondaryCardHighlight} />
+				<Text variant="action" color="secondaryCardHighlight">
+					{labelToShow}
+				</Text>
+			</Box>
+		</Pressable>
 	);
 };
