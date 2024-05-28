@@ -40,18 +40,6 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 	);
 	const insets = useSafeAreaInsets();
 	const { data: grindSetting } = useGrindSettings(recipe?.coffeeGrind);
-	const onPressCoffeeGrind =
-		grindSetting &&
-		recipe?.coffeeGrind &&
-		(() => {
-			Alert.alert(
-				t("brewScreen.grinderSettings.title"),
-				t("brewScreen.grinderSettings.message", {
-					grind: t(`grindSize.${recipe.coffeeGrind}`),
-					setting: grindSetting,
-				}),
-			);
-		});
 
 	if (isError) {
 		return <Text variant="body">{t("brewScreen.loadingError")}</Text>;
@@ -104,14 +92,13 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 						Icon={CoffeeBeansIcon}
 						label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
 					/>
-					<Pressable onPress={onPressCoffeeGrind}>
-						<CalloutCell
-							Icon={CoffeeScoopIcon}
-							label={t(`grindSize.${recipe.coffeeGrind}`, {
-								defaultValue: "-",
-							})}
-						/>
-					</Pressable>
+					<CalloutCell
+						Icon={CoffeeScoopIcon}
+						label={t(`grindSize.${recipe.coffeeGrind}`, {
+							defaultValue: "-",
+						})}
+						secondaryLabel={`${grindSetting ?? "-"} clicks`}
+					/>
 				</Box>
 				{recipeIsScalable && (
 					<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />
