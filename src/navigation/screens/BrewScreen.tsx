@@ -16,6 +16,7 @@ import {
 	useGrindSettings,
 } from "../../features/recipes";
 import { MethodIcon } from "../../features/recipes/MethodIcon";
+import { CoffeeGrind, CoffeeMethod } from "../../services/api";
 import { t } from "../../services/strings";
 import { Box } from "../../ui/atoms/Box";
 import { Button } from "../../ui/atoms/Button";
@@ -23,6 +24,37 @@ import { Text } from "../../ui/atoms/Text";
 import { CalloutCell } from "../../ui/molecules/CalloutCell";
 import { useAppTheme } from "../../ui/theme";
 import { BrewScreenProps } from "../types";
+
+type RecipeSummaryProps = {
+	method: CoffeeMethod;
+	coffeeWeight: number | undefined;
+	coffeeGrind: CoffeeGrind | undefined;
+};
+const RecipeSummary = ({
+	method,
+	coffeeWeight,
+	coffeeGrind,
+}: RecipeSummaryProps) => {
+	const { data: grindSetting } = useGrindSettings(coffeeGrind);
+	return (
+		<Box flexDirection="row" columnGap="s" paddingVertical="s">
+			<CalloutCell
+				Icon={(props) => <MethodIcon method={method} {...props} />}
+			/>
+			<CalloutCell
+				Icon={CoffeeBeansIcon}
+				label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
+			/>
+			<CalloutCell
+				Icon={CoffeeScoopIcon}
+				label={t(`grindSize.${coffeeGrind}`, {
+					defaultValue: "-",
+				})}
+				secondaryLabel={`${grindSetting ?? "-"} clicks`}
+			/>
+		</Box>
+	);
+};
 
 export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 	const { colors } = useAppTheme();
@@ -33,7 +65,6 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 		-1,
 	);
 	const insets = useSafeAreaInsets();
-	const { data: grindSetting } = useGrindSettings(recipe?.coffeeGrind);
 
 	if (isError) {
 		return <Text variant="body">{t("brewScreen.loadingError")}</Text>;
@@ -48,9 +79,10 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 	}
 
 	const recipeIsScalable = recipe.coffeeRatio !== undefined;
-	const coffeeWeight = recipe.coffeeRatio
-		? recipe.coffeeRatio * drinkSize
-		: recipe.coffeeWeight;
+	const coffeeWeight =
+		recipe.coffeeRatio !== undefined
+			? recipe.coffeeRatio * drinkSize
+			: recipe.coffeeWeight;
 
 	return (
 		<ScrollView
@@ -80,22 +112,11 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 				>
 					{t("brewScreen.linkToSource", { name: recipe.source.name })}
 				</Button>
-				<Box flexDirection="row" columnGap="s" paddingVertical="s">
-					<CalloutCell
-						Icon={(props) => <MethodIcon method={recipe.method} {...props} />}
-					/>
-					<CalloutCell
-						Icon={CoffeeBeansIcon}
-						label={`${coffeeWeight?.toFixed(0) ?? "- "}g`}
-					/>
-					<CalloutCell
-						Icon={CoffeeScoopIcon}
-						label={t(`grindSize.${recipe.coffeeGrind}`, {
-							defaultValue: "-",
-						})}
-						secondaryLabel={`${grindSetting ?? "-"} clicks`}
-					/>
-				</Box>
+				<RecipeSummary
+					method={recipe.method}
+					coffeeWeight={coffeeWeight}
+					coffeeGrind={recipe.coffeeGrind}
+				/>
 				{recipeIsScalable && (
 					<BrewSizeAdjustment size={drinkSize} setSize={setDrinkSize} />
 				)}
