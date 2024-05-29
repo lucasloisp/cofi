@@ -60,7 +60,7 @@ const MOCK_RECIPES: Recipe[] = [
 		coffeeGrind: "med_coarse",
 		steps: [
 			{ description: "Don't be in a Hurry" },
-			{ description: "Add 500ml water" },
+			{ description: "Add in the water" },
 			{ time: 60 * 4, description: "Stir the crust" },
 			{ time: 60 * 4, description: "Scoop off the foam" },
 			{ time: 60 * 9, description: "Put the plunger in, to the surface" },
