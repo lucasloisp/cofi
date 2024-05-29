@@ -20,7 +20,7 @@ export type Recipe = {
 	id: string;
 	name: string;
 	author: string;
-	source: { url: string; name: string };
+	source?: { url: string; name: string };
 	method: CoffeeMethod;
 	coffeeGrind: CoffeeGrind;
 	steps: RecipeStep[];

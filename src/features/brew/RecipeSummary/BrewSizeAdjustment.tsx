@@ -1,8 +1,8 @@
-import { CUP_SIZE_ML } from "./constants";
-import { t } from "../../services/strings";
-import { Box } from "../../ui/atoms/Box";
-import { Button } from "../../ui/atoms/Button";
-import { Text } from "../../ui/atoms/Text";
+import { t } from "../../../services/strings";
+import { Box } from "../../../ui/atoms/Box";
+import { Button } from "../../../ui/atoms/Button";
+import { Text } from "../../../ui/atoms/Text";
+import { CUP_SIZE_ML } from "../constants";
 
 type BrewSizeAdjustmentProps = {
 	size: number;
