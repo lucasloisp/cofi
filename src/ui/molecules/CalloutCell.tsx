@@ -1,10 +1,10 @@
+import { useReducer } from "react";
+import { Pressable } from "react-native";
 import type { SvgProps } from "react-native-svg";
 
 import { Box } from "../../ui/atoms/Box";
 import { Text } from "../../ui/atoms/Text";
 import { useAppTheme } from "../../ui/theme";
-import { Pressable } from "react-native";
-import { useReducer } from "react";
 
 type RecipeCharacteristicProps = {
 	Icon: React.ComponentType<SvgProps>;

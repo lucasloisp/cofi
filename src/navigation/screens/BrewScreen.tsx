@@ -1,12 +1,6 @@
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useReducer, useState } from "react";
-import {
-	ActivityIndicator,
-	Alert,
-	Linking,
-	Pressable,
-	ScrollView,
-} from "react-native";
+import { ActivityIndicator, Linking, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import CoffeeBeansIcon from "../../../assets/icons/coffee-beans.svg";
