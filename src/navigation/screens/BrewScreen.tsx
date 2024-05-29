@@ -47,9 +47,8 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 				/>
 				<Box flex={1}>
 					<Text variant="header">
-						{recipe.name}
+						{recipe.name}{" "}
 						<Text variant="body">
-							{" "}
 							{t("brewScreen.recipeAuthoredBy", { author: recipe.author })}
 						</Text>
 					</Text>
