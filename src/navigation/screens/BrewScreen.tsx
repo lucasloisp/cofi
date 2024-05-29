@@ -1,14 +1,14 @@
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useReducer } from "react";
-import { ActivityIndicator, Linking, ScrollView } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BrewTimer } from "../../features/brew";
+import { RecipeSource } from "../../features/brew/RecipeSource";
 import { RecipeSummary } from "../../features/brew/RecipeSummary";
 import { useRecipe, RecipeStepList } from "../../features/recipes";
 import { t } from "../../services/strings";
 import { Box } from "../../ui/atoms/Box";
-import { Button } from "../../ui/atoms/Button";
 import { Text } from "../../ui/atoms/Text";
 import { useAppTheme } from "../../ui/theme";
 import { BrewScreenProps } from "../types";
@@ -55,12 +55,7 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 				</Box>
 			</Box>
 			<Box padding="m" rowGap="m" height="100%">
-				<Button
-					onPress={() => Linking.openURL(recipe.source.url)}
-					textAlign="left"
-				>
-					{t("brewScreen.linkToSource", { name: recipe.source.name })}
-				</Button>
+				{recipe.source !== undefined && <RecipeSource source={recipe.source} />}
 				<RecipeSummary recipe={recipe} />
 				<BrewTimer />
 				{recipe.steps ? (
