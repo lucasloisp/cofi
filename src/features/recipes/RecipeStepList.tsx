@@ -14,6 +14,7 @@ export const RecipeStepList = ({
 	stepDone,
 	toggleStep,
 }: RecipeStepListProps) => {
+	const firstWithTime = steps.find((step) => step.time !== undefined);
 	return (
 		<Box rowGap="s">
 			{steps.map((step, ix) => (
@@ -21,7 +22,7 @@ export const RecipeStepList = ({
 					<RecipeStepTask
 						step={step}
 						done={ix <= stepDone}
-						previousDone={ix - 1 <= stepDone}
+						timerShown={ix - 1 <= stepDone || step === firstWithTime}
 					/>
 				</Pressable>
 			))}

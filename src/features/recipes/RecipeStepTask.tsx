@@ -9,16 +9,16 @@ import { timerElapsedAtom } from "../brew/timerAtom";
 type RecipeStepProps = {
 	step: RecipeStep;
 	done: boolean;
-	previousDone: boolean;
+	timerShown: boolean;
 };
 
 export const RecipeStepTask = ({
 	step: { time, description },
 	done,
-	previousDone,
+	timerShown,
 }: RecipeStepProps) => {
 	const [timeElapsed] = useAtom(timerElapsedAtom);
-	const isTaskTimerVisible = time !== undefined && !done && previousDone;
+	const isTaskTimerVisible = time !== undefined && timerShown;
 	const timeUntilTask = Math.max((time ?? timeElapsed) - timeElapsed, 0);
 	return (
 		<Box
@@ -37,12 +37,8 @@ export const RecipeStepTask = ({
 			>
 				{description}
 			</Text>
-			{isTaskTimerVisible && (
-				<Text
-					variant="action"
-					color="secondaryCardText"
-					textDecorationLine={done ? "line-through" : "none"}
-				>
+			{!done && isTaskTimerVisible && (
+				<Text variant="action" color="secondaryCardText">
 					In {formatSeconds(timeUntilTask)}
 				</Text>
 			)}
