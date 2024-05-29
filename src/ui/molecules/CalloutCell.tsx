@@ -8,7 +8,7 @@ import { useReducer } from "react";
 
 type RecipeCharacteristicProps = {
 	Icon: React.ComponentType<SvgProps>;
-	label: string;
+	label?: string;
 	secondaryLabel?: string;
 };
 
@@ -22,10 +22,15 @@ export const CalloutCell = ({
 	const labelToShow = isUp ? label : secondaryLabel;
 
 	return (
-		<Pressable disabled={!secondaryLabel} onPress={flip} style={{ flex: 1 }}>
+		<Pressable
+			disabled={!secondaryLabel}
+			onPress={flip}
+			style={{ flexGrow: 1 }}
+		>
 			<Box
+				flex={1}
 				alignItems="center"
-				justifyContent="space-between"
+				justifyContent="center"
 				backgroundColor="secondaryCardBackground"
 				borderColor="secondaryCardHighlight"
 				borderWidth={2}
@@ -33,9 +38,11 @@ export const CalloutCell = ({
 				padding="m"
 			>
 				<Icon width={48} height={48} fill={colors.secondaryCardHighlight} />
-				<Text variant="action" color="secondaryCardHighlight">
-					{labelToShow}
-				</Text>
+				{labelToShow && (
+					<Text variant="action" color="secondaryCardHighlight">
+						{labelToShow}
+					</Text>
+				)}
 			</Box>
 		</Pressable>
 	);

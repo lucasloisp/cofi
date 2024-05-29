@@ -86,7 +86,6 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 				<Box flexDirection="row" columnGap="s" paddingVertical="s">
 					<CalloutCell
 						Icon={(props) => <MethodIcon method={recipe.method} {...props} />}
-						label={recipe.method}
 					/>
 					<CalloutCell
 						Icon={CoffeeBeansIcon}
