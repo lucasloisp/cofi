@@ -59,7 +59,10 @@ export const BrewScreen = ({ route, navigation }: BrewScreenProps) => {
 		: recipe.coffeeWeight;
 
 	return (
-		<ScrollView contentInset={insets}>
+		<ScrollView
+			contentInset={{ bottom: insets.bottom }}
+			contentContainerStyle={{ paddingTop: insets.top }}
+		>
 			<Box flexDirection="row" alignItems="flex-start">
 				<HeaderBackButton
 					labelVisible={false}
