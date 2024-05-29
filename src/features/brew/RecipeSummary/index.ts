@@ -1,0 +1,1 @@
+export { RecipeSummary } from "./RecipeSummary";
